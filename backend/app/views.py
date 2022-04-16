@@ -1,4 +1,5 @@
 from app import app
+from config import TwitterAPI
 from tweepy import Client
 
 @app.route("/")
@@ -7,7 +8,7 @@ def index():
 
 @app.route("/search")
 def twetterSearch():
-    bearer_token = "WIP"
+    bearer_token = app.config["TWITTER_BEARER_TOKEN"]
 
     if not bearer_token:
         raise RuntimeError("Not found bearer token")
