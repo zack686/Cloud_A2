@@ -1,4 +1,4 @@
-from app import app
+from apis import app
 from config import TwitterAPI
 from tweepy import Client
 
