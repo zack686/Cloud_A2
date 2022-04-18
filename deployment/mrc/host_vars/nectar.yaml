@@ -1,18 +1,14 @@
 # Common vars
 availability_zone: melbourne-qh2-uom
 instance_image: 356ff1ed-5960-4ac2-96a1-0c0198e6a999
-instance_key_name: id_alwyn
-instance_flavor: uom.general.2c9g
+instance_key_name: group24_key
+instance_flavor: uom.mse.2c9g
 
 # Volume
 volumes:
   - vol_name: demo-vol-1-1
     vol_size: 10
   - vol_name: demo-vol-1-2
-    vol_size: 10
-  - vol_name: demo-vol-2-1
-    vol_size: 10
-  - vol_name: demo-vol-2-2
     vol_size: 10
 
 # Security group
@@ -34,7 +30,3 @@ security_groups:
 instances:
   - name: demo-1
     volumes: ['demo-vol-1-1', 'demo-vol-1-2']
-  - name: demo-2
-    volumes: ['demo-vol-2-1', 'demo-vol-2-2']
-
-

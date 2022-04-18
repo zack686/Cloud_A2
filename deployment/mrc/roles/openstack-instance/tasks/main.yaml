@@ -7,8 +7,8 @@
     key_name: '{{ instance_key_name }}'
     flavor: '{{ instance_flavor }}'
     availability_zone: '{{ availability_zone }}'
-    security_groups: '{{ sg_names }}'
-    volumes: '{{ item.volumes }}'
+    # security_groups: '{{ sg_names }}'
+    # volumes: '{{ item.volumes }}'
     auto_floating_ip: yes
     wait: yes
     timeout: 600
