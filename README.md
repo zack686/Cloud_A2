@@ -8,7 +8,8 @@ Swagger is running on http://127.0.0.1:5000/docs
 
 ## Set up the .env file 
 Please create a .env file using the following variable names.  
-Replace IP and PORT with the actual IP and Port number of the couchDB node  
+Replace IP and PORT with the actual IP address and Port number of the couchDB node  
+Need to use unimelb VPN to connect to DB  
 
 DEBUG=TRUE  
 FLASK_ENV=development  
