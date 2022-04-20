@@ -7,7 +7,7 @@ python 3.8.9
 Please create a .env file using the following variable names.  
 DEBUG=TRUE  
 FLASK_ENV=development  
-DB_URL=  
+DB_URL=http://%s:%s@IP:PORT/  
 DB_USERNAME=  
 DB_PASSWORD=  
 TWITTER_API_KEY=  

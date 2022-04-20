@@ -1,8 +1,11 @@
 from apis import app
-from config import TwitterAPI
-from tweepy import Client
+from config import TwitterAPI, ConnectDB
 from flask import Flask
 from flask_restx import Resource, Api
+import couchdb
+from tweepy import Client
+
+
 
 api = Api(app, doc='/docs', title='Api documentation for Cloud A2')
 
@@ -15,7 +18,7 @@ class TwitterSeach(Resource):
     def get(self):
         '''Get 10 tweets from Melbourne'''
         
-        bearer_token = app.config["TWITTER_BEARER_TOKEN"]
+        bearer_token = TwitterAPI.TWITTER_BEARER_TOKEN
 
         if not bearer_token:
             raise RuntimeError("Not found bearer token")
@@ -52,3 +55,22 @@ class TwitterSeach(Resource):
         #             counter += 1
 
         return tweets
+
+# The class is just a simple example to access the DB
+@api.route("/crud")
+class CRUDExample(Resource):
+    def get(self):
+        ConnectDB
+        url = ConnectDB.DB_URL
+        user = ConnectDB.USERNAME
+        password = ConnectDB.PASSWORD
+        names = {}
+        
+        # connect to the db server
+        couchserver = couchdb.Server(url % (user, password))
+        
+        for num, dbname in enumerate(couchserver):
+            print(dbname)
+            names[num] = dbname 
+            
+        return names

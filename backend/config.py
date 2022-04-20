@@ -7,6 +7,9 @@ load_dotenv('.env')
 
 class TwitterAPI:
     TWITTER_BEARER_TOKEN = environ.get('TWITTER_BEARER_TOKEN')
+    DB_URL = environ.get('DB_URL')
 
-#class TwitterAPI:
-#    TWITTER_BEARER_TOKEN = environ.get('AAAAAAAAAAAAAAAAAAAAAJspbgEAAAAADFM%2BOs5zS8ib9LHFvzGw8byssBg%3DoFHQ4m8azb9ba0vs6KcZ41joi0NS42daexGqziCdS3RlZ3fDjj')
+class ConnectDB:
+    DB_URL = environ.get('DB_URL')
+    USERNAME = environ.get('DB_USERNAME')
+    PASSWORD = environ.get('DB_PASSWORD')
