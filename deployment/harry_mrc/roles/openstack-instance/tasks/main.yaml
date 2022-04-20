@@ -1,0 +1,51 @@
+---
+# Create an instance on NeCTAR
+- name: Create an instance
+  openstack.cloud.server:
+    name: '{{ item.name }}'
+    image: '{{ instance_image }}'
+    key_name: '{{ instance_key_name }}'
+    flavor: '{{ instance_flavor }}'
+    availability_zone: '{{ availability_zone }}'
+    security_groups: '{{ sg_names }}'
+    volumes: '{{ item.volumes }}'
+    auto_floating_ip: yes
+    wait: yes
+    timeout: 600
+    state: present
+    userdata: |
+      #cloud-config
+      users:
+          - default
+          - name: test
+            shell: /bin/bash
+            sudo: ALL=(ALL) NOPASSWD:ALL
+            groups: users, admin
+            lock_passwd: true
+            ssh_authorized_keys:
+              - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC45wDiP8hxKD7gOvZ2K4zc+HJZiQOaR6yyQ4V43FeVxzTdgSQiuNOCHnL9GJzAmlugcrSjDYULxzoo1+/ZtMCW0qWostYCQjc5tr/yaSHwJMI1ZXFZnc4iqj8QfzKR8eN9bqcHt/plfy9FboobPW7JR/ANMqTk8A9GAqzyXWjRu059QgmxxBJeEUWXys1wwbpbBdhUjLC1eaNryT4wYFKpJpIKfoorVIjzQ1+eZUOzpnDgwLFmg+RijFOjEQwogwD83Fl+N+LgbWbeUI3tjqrVrSI0v9CarF7NboRMJRvs+kB7D6xqNmYl/6GUTUl9tD/Zz26g/jicQbXmPpX7gdW5gzrQ7Z6/zEDZSYhAvbiFEksls03cW3JrqZKwqdEErKARE6jDowhX9NobNkM7//KN5vMc6MkgqPjH9GM40Q3YlbSERudFmSdOadDWIdqEPsWbjcOSFr3dsmrWxMTSs4MnzrpbNybAFKwJlorG0vmZMnd6T3WDIYYhlTjBrZoR64sS3hyGmQfv+LZfTJ+B6i4uTbvi8/V6vBw8SbcVc7u3IRtqEG3POg4GpUOuzdc+tU24pza7vncP7Zpz2Q5Drq80Xp8zkSXCYR1RyC2gLbHz8elSzpXCm3vcVbKRHUp8khaQwe0Py5zNfyO9W9NGLbcTXZYgzkkYcB+x6EkPIwndtw== luongvd3@gmai.com
+
+  loop: '{{ instances }}'
+  register: os_instance
+
+- ansible.builtin.debug:
+    msg: "Instance {{ item.openstack.name }} has been created. IP address is {{ item.openstack.public_v4 }}"
+  loop: '{{ os_instance.results }}'
+  when: item.openstack is defined
+
+- name: Wait for connection
+  ansible.builtin.wait_for:
+    host: "{{ item.openstack.public_v4 }}"
+    port: 22
+    timeout: 120
+    search_regex: OpenSSH
+  loop: '{{ os_instance.results }}'
+  when: item.openstack is defined
+
+# Add hosts to Ansible in-memory inventory
+- name: Add host
+  ansible.builtin.add_host:
+    name: '{{ item.openstack.public_v4 }}'
+    groups: couchdb
+  loop: '{{ os_instance.results }}'
+  when: item.openstack is defined
