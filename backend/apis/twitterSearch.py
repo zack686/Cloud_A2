@@ -1,12 +1,6 @@
 from apis import app
 from config import TwitterAPI
 from tweepy import Client
-
-# from apispec import APISpec
-# from apispec.ext.marshmallow import MarshmallowPlugin
-# from apispec_webframeworks.flask import FlaskPlugin
-# from flask import Flask, jsonify, render_template, send_from_directory
-# from marshmallow import Schema, fields
 from flask import Flask
 from flask_restx import Resource, Api
 
@@ -20,6 +14,7 @@ def index():
 class TwitterSeach(Resource):
     def get(self):
         '''Get 10 tweets from Melbourne'''
+        
         bearer_token = app.config["TWITTER_BEARER_TOKEN"]
 
         if not bearer_token:
