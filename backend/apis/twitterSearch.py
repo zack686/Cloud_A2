@@ -60,6 +60,7 @@ class TwitterSeach(Resource):
 @api.route("/crud")
 class CRUDExample(Resource):
     def get(self):
+        '''A simple DB sample'''
         ConnectDB
         url = ConnectDB.DB_URL
         user = ConnectDB.USERNAME

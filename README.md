@@ -3,6 +3,9 @@
 ### Python version
 python 3.8.9  
 
+## API Documentation
+Swagger is running on http://127.0.0.1:5000/docs  
+
 ## Set up the .env file 
 Please create a .env file using the following variable names.  
 DEBUG=TRUE  
