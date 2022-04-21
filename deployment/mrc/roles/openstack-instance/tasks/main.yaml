@@ -24,6 +24,7 @@
             lock_passwd: true
             ssh_authorized_keys:
               - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC45wDiP8hxKD7gOvZ2K4zc+HJZiQOaR6yyQ4V43FeVxzTdgSQiuNOCHnL9GJzAmlugcrSjDYULxzoo1+/ZtMCW0qWostYCQjc5tr/yaSHwJMI1ZXFZnc4iqj8QfzKR8eN9bqcHt/plfy9FboobPW7JR/ANMqTk8A9GAqzyXWjRu059QgmxxBJeEUWXys1wwbpbBdhUjLC1eaNryT4wYFKpJpIKfoorVIjzQ1+eZUOzpnDgwLFmg+RijFOjEQwogwD83Fl+N+LgbWbeUI3tjqrVrSI0v9CarF7NboRMJRvs+kB7D6xqNmYl/6GUTUl9tD/Zz26g/jicQbXmPpX7gdW5gzrQ7Z6/zEDZSYhAvbiFEksls03cW3JrqZKwqdEErKARE6jDowhX9NobNkM7//KN5vMc6MkgqPjH9GM40Q3YlbSERudFmSdOadDWIdqEPsWbjcOSFr3dsmrWxMTSs4MnzrpbNybAFKwJlorG0vmZMnd6T3WDIYYhlTjBrZoR64sS3hyGmQfv+LZfTJ+B6i4uTbvi8/V6vBw8SbcVc7u3IRtqEG3POg4GpUOuzdc+tU24pza7vncP7Zpz2Q5Drq80Xp8zkSXCYR1RyC2gLbHz8elSzpXCm3vcVbKRHUp8khaQwe0Py5zNfyO9W9NGLbcTXZYgzkkYcB+x6EkPIwndtw== luongvd3@gmai.com
+              - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDquRNlqrtre8fc4L22N0EkaQmFMlt2/ovEY7W+b67Ov5KYN8DyDA1Iyqz2hgh2yYltY2WBDqJa6hrDKl2G6hJ8wjOrkqmIF1Y6412ZpM5SWyqOPUE3B5VKp9Ybb43hC/7r6Kux0DND7+y6R1rRIcByZo/Tb+REDLXxKlCfigIUScYI0vhY8O6z2oEWtHenc+NrDQhbdJh2CQW2ks6VSawAakU0xwaDfDvy6Bzamy1/xNTTVD99jCMyUoxKzp76kKj3L2w5ZnVuQE5kBOyxWpPtB0h54qEP4Wd5YwOKImyBXs4CLCagwFa9ETbdIRCd/qeO36obYLQsM87aYLNTpPFXVWRmNfAEal+TSdZU12Ua+6bO5fVQziOEG5+3URe/dpdHAXQSF3JTewtAqKwWq9MEhLcI4td0zqAFBvFqkJum2nJQwMOpk3/IQuFyOjFlNiUNDniS9MTGNmu9SGjLSKiwY04rcFSM9VH59TrycHlU8cvGNRfXeuP9HzUzctFKMV0= jkerlidis@DESKTOP-HJ38CHK
 
   loop: '{{ instances }}'
   register: os_instance
