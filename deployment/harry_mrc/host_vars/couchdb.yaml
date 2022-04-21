@@ -6,6 +6,7 @@ volumes:
     mountpoint: /data
 
 couchdb_dir: /data
+docker_dir: /var/lib/config
 
 # Couchdb
 database_name: counchdb

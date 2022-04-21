@@ -1,12 +1,22 @@
 ---
-#- name: Create Couchdb directory
-#  become: yes
-#  ansible.builtin.file:
-#    path: "{{ couchdb_dir }}"
-#    owner: "{{ ansible_user }}"
-#    group: "{{ ansible_user }}"
-#    recurse: yes
-#    state: directory
+- name: Create Couchdb directory
+  become: yes
+  ansible.builtin.file:
+    path: "{{ couchdb_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: yes
+    state: directory
+
+- name: Create Config directory
+  become: yes
+  ansible.builtin.file:
+    path: "{{ docker_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: yes
+    state: directory
+
 - name: IP Address
   set_fact:
     IpAdd: "{{ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0])}}"
@@ -15,16 +25,95 @@
   become: yes
   ansible.builtin.template:
     src: docker-compose.yaml.j2
-    dest: "{{ couchdb_dir }}/docker-compose.yaml"
+    dest: "{{ docker_dir }}/docker-compose.yaml"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+
+- name: Copy init file
+  become: yes
+  ansible.builtin.template:
+    src: init.sh.j2
+    dest: "{{ docker_dir }}/init.sh"
+    mode: a+x
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Copy cluster file
+  become: yes
+  ansible.builtin.template:
+    src: cluster.sh.j2
+    dest: "{{ docker_dir }}/cluster.sh"
+    mode: a+x
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Copy docker file
+  become: yes
+  ansible.builtin.template:
+    src: couch-dockerfile.j2
+    dest: "{{ docker_dir }}/couch-dockerfile"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Copy vm.args file
+  become: yes
+  ansible.builtin.template:
+    src: vm.args.j2
+    dest: "{{ docker_dir }}/vm.args"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+#- name: Create Docker Registry
+#  docker_container:
+#    name: registry
+#    image: registry:2
+#    state: started
+#    restart_policy: unless-stopped
+#    volumes:
+#      - {{ docker_dir }}:/var/lib/registry
+#    published_ports:
+#      - "5000:5000"
+
+- name: Build an image
+  become: yes
+  community.docker.docker_image:
+    build:
+      path: "{{ docker_dir }}"
+      dockerfile: couch-dockerfile
+    name: customize-couchdb
+    tag: v1
+    source: build
 
 - name: Run docker compose
   become: yes
   community.docker.docker_compose:
-    project_src: "{{ couchdb_dir }}"
-    pull: yes
+    project_src: "{{ docker_dir }}"
     state: present
     remove_orphans: yes
     recreate: always
+    pull: no
 
+
+- name: Run init script
+  become: yes
+  ansible.builtin.shell: sudo docker exec -it couchdb{{IpAdd}} ./opt/couchdb/innit.sh
+  register: script_out1
+
+- ansible.builtin.debug:
+    msg: "{{script_out1.stdout_lines}}"
+
+- name: Run cluster script
+  become: yes
+  ansible.builtin.shell: sudo docker exec -it couchdb{{IpAdd}} ./opt/couchdb/cluster.sh
+  when: IpAdd == groups.couchdb[0]
+  register: script_out2
+
+- ansible.builtin.debug:
+    msg: "{{script_out2.stdout_lines}}"
+  when: IpAdd == groups.couchdb[0]
+
+#- name: Run final cluster script(again)
+#  become: yes
+#  ansible.builtin.shell: |
+#    sudo docker exec -it couchdb{{IpAdd}} curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "finish_cluster"}'
+#  when: IpAdd == groups.couchdb[0]

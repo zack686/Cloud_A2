@@ -73,7 +73,7 @@ security_groups:
     remote_ip_prefix: 0.0.0.0/0
 # Instance
 instances:
-  - name: demo-1
-    volumes: ['demo-vol-1-1', 'demo-vol-1-2']
-  - name: demo-2
-    volumes: ['demo-vol-2-1', 'demo-vol-2-2']
+  - name: couch-server-1
+    volumes: ['couch-vol-1-1', 'couch-vol-1-2']
+  - name: couch-server-2
+    volumes: ['couch-vol-2-1', 'couch-vol-2-2']

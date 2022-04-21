@@ -1,0 +1,26 @@
+#!/bin/sh
+sleep 30
+# First, get two UUIDs to use later on. Be sure to use the SAME UUIDs on all nodes.
+uuids=$(curl http://127.0.0.1:5984/_uuids?count=2)
+uuid1=$(echo $uuids | /usr/bin/jq --raw-output '.uuids[0]')
+uuid1=$(echo $uuids | /usr/bin/jq --raw-output '.uuids[1]')
+
+# CouchDB will respond with something like:
+#   {"uuids":["60c9e8234dfba3e2fdab04bf92001142","60c9e8234dfba3e2fdab04bf92001cc2"]}
+# Copy the provided UUIDs into your clipboard or a text editor for later use.
+# Use the first UUID as the cluster UUID.
+# Use the second UUID as the cluster shared http secret.
+
+# Now, bind the clustered interface to all IP addresses available on this machine
+curl -u admin:password -X PUT http://127.0.0.1:5984/_node/_local/_config/chttpd/bind_address -d '"0.0.0.0"'
+
+# If not using the setup wizard / API endpoint, the following 2 steps are required:
+# Set the UUID of the node to the first UUID you previously obtained:
+curl -u admin:password -X PUT http://127.0.0.1:5984/_node/_local/_config/couchdb/uuid -d '"'$uuid1'"'
+
+# Finally, set the shared http secret for cookie creation to the second UUID:
+curl -u admin:password -X PUT http://127.0.0.1:5984/_node/_local/_config/chttpd_auth/secret -d '"'$uuid2'"'
+
+curl http://127.0.0.1:5984/
+
+curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "enable_cluster", "bind_address":"0.0.0.0", "username": "admin", "password":"password", "node_count":"2"}'

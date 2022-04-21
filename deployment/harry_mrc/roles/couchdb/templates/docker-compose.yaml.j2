@@ -2,11 +2,12 @@ version: '3.6'
 
 services:
     couch-server:
-        image: couchdb
+        image: customize-couchdb:v1
         stdin_open: true
         tty: true
         container_name: couchdb{{IpAdd}}
         restart: always
+        command: "-setcookie cookie"
         ports:
             - "5984:5984"
             - "4369:4369"
