@@ -38,7 +38,6 @@
             lock_passwd: true
             ssh_authorized_keys:
               - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDO7vuNrB13GN9TO4IQZA7jxy8mQooNUKFnDdJgkZ05rT+qP3GFLy1rvLW/UwQPHkfd6eNutGHIxmvZu0uIX1OdcEKlyN0Gyzt//ZY17SEVWMDeoKbU3brMXiyn23hOgWCqs3a1/whh90UUVprjoXE8K1Ms+3R+PfV5INSHpc/6nL9mgkVc4uSAw6JsnByxUws4495g5BaiKIBLZ+Gwa00XpPrXsrAhjOWwKzjDni0/gtLerZ2pEKugtj1wu3k0eHx+O1z8qoqd6iQjqiYNY8gb/mGoyv8BCdxOo5AhEq66aphnubMt/j4+ytwa3rqQ6kemh7SM8ztET4KgAXz7ftZj Generated-by-Nova
-          
           - name: zack
             shell: /bin/bash
             sudo: ALL=(ALL) NOPASSWD:ALL
@@ -46,8 +45,13 @@
             lock_passwd: true
             ssh_authorized_keys:
               - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCs7Ms/hR9WRnjgmu+e4BDb3at8uDKxNuAgXAlVSFd2aqhCt3VAMoBVnAWpWqaQnEquSICqU7OBEf7iT32ftHwWVFt6tDnZdURJycdSTW678yAyeTCHMiF9axyhVxaAd54J8947xprG1qpvUFiV+3pccMgbzBfsSwU0yCH+f9hEo49Z6A2njQsYM4w5oXxowayPZwpnevz79goaRK1kBG2A61QkNnml4+uDRoGLMSlqoRadEnFviUnLRg2zlQ2bmkmakgJ1DjNGMQ1B3OdTlujSA2xJgDqQZhcRt1ci0i/okBu7IZJ7KMXTz2YUSbfOm1LYXWB6/bdwzMOpEB9xJlVX Generated-by-Nova
-             
-             
+            - name: julius
+            shell: /bin/bash
+            sudo: ALL=(ALL) NOPASSWD:ALL
+            groups: users, admin
+            lock_passwd: true
+            ssh_authorized_keys:
+              - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcUctfqr5d5fqtgRaiWCeBNF2k6CZuxj5d2tVypCy9SMPFui0G0AqFjOPikWnfwKIaDeKQ+fOaT3qQmgdNAF2BsTpvACaKHc8INNLILQgTiK8Igj1NLqn/o2lVP4kDgDpxqKLKFS+vHmbJ4HJ4AL/V2ov3pR89KnhCgt1X7vbiQg1LDMqEQ1ZGAoR9cOwB0vQBHxKfTBiv+vAW5R3auc1pUA9X86md1lbr4TzSgt1mRRYfjrEbOpY+o5VAXxPMQrVAFCYbEEmYVlNq015fKERqM1NW1NbXrPYyKEW/8OIwjEGb6T7kG7qZNrb66hx6iJwDKMPasB83tb6o82hFi7JT Generated-by-Nova  
 
   loop: '{{ instances }}'
   register: os_instance
