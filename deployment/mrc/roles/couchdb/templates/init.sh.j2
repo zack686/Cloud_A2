@@ -23,4 +23,4 @@ curl -u admin:password -X PUT http://127.0.0.1:5984/_node/_local/_config/chttpd_
 
 curl http://127.0.0.1:5984/
 
-curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "enable_cluster", "bind_address":"0.0.0.0", "username": "admin", "password":"password", "node_count":"2"}'
+curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "enable_cluster", "bind_address":"0.0.0.0", "username": "admin", "password":"password", "node_count":"3"}'

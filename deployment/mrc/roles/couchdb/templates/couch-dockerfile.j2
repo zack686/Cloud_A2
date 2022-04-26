@@ -1,163 +1,9 @@
-# The FROM instruction sets the Base Image for subsequent instructions.
-# As such, a valid Dockerfile must have FROM as its first instruction.
-#
-# The tag or digest values are optional. If you omit either of them,
-# the builder assumes a latest by default.
-#
-# The scratch image is an empty base container.
-#
-# FROM <image>[:<tag>|@<digest]
 FROM couchdb
 
-
-# The ADD instruction copies new files, directories or remote file URLs from
-# <src> and adds them to the filesystem of the container at the path <dest>.
-#
-# Multiple <src> resource may be specified but if they are files or
-# directories then they must be relative to the source directory that is
-# being built (the context of the build).
-#
-# Each <src> may contain wildcards and matching will be done using Go's
-# filepath.Match rules.
-#
-# The <dest> is an absolute path, or a path relative to WORKDIR, into
-# which the source will be copied inside the destination container.
-#
-# All new files and directories are created with a UID and GID of 0.
-#
-# In the case where <src> is a remote file URL, the destination will have
-# permissions of 600. If the remote file being retrieved has an HTTP
-# Last-Modified header, the timestamp from that header will be used to set
-# the mtime on the destination file.
-#
-# The copy obeys the following rules:
-#
-# * The <src> path must be inside the context of the build; you cannot
-#   ADD ../something /something, because the first step of a docker build
-#   is to send the context directory (and subdirectories) to the docker daemon.
-#
-# * If <src> is a URL and <dest> does not end with a trailing slash, then a
-#   file is downloaded from the URL and copied to <dest>.
-#
-# * If <src> is a URL and <dest> does end with a trailing slash, then the
-#   filename is inferred from the URL and the file is downloaded to
-#   <dest>/<filename>. For instance, ADD http://example.com/foobar / would
-#   create the file /foobar. The URL must have a nontrivial path so that an
-#   appropriate filename can be discovered in this case (http://example.com
-#   will not work).
-#
-# * If <src> is a directory, the entire contents of the directory are copied,
-#   including filesystem metadata.
-#   - Note: The directory itself is not copied, just its contents.
-#
-# * If <src> is a local tar archive in a recognized compression format
-#   (identity, gzip, bzip2 or xz) then it is unpacked as a directory.
-#   Resources from remote URLs are not decompressed. When a directory is
-#   copied or unpacked, it has the same behavior as tar -x: the result is
-#   the union of:
-#   - Whatever existed at the destination path and
-#   - The contents of the source tree, with conflicts resolved in favor
-#     of "2." on a file-by-file basis.
-#
-# * If <src> is any other kind of file, it is copied individually along with
-#   its metadata. In this case, if <dest> ends with a trailing slash /, it
-#   will be considered a directory and the contents of <src> will be written
-#   at <dest>/base(<src>).
-#
-# * If multiple <src> resources are specified, either directly or due to the
-#   use of a wildcard, then <dest> must be a directory, and it must end with
-#   a slash /.
-#
-# * If <dest> does not end with a trailing slash, it will be considered a
-#   regular file and the contents of <src> will be written at <dest>.
-#
-# * If <dest> doesn't exist, it is created along with all missing directories
-#   in its path.
-#
-# ADD <src>... <dest>
-# ADD ["<src>"... "<dest>"] (this form is required for paths containing
-#                            whitespace)
-#ADD src/file.cpp /usr/include/mylib/file.cpp
-
-
-# The COPY instruction copies new files or directories from <src> and adds
-# them to the filesystem of the container at the path <dest>.
-#
-# Multiple <src> resource may be specified but they must be relative to the
-# source directory that is being built (the context of the build).
-#
-# Each <src> may contain wildcards and matching will be done using Go's
-# filepath.Match rules.
-#
-# The <dest> is an absolute path, or a path relative to WORKDIR, into which
-# the source will be copied inside the destination container.
-#
-# All new files and directories are created with a UID and GID of 0.
-#
-# The copy obeys the following rules:
-#
-# * The <src> path must be inside the context of the build; you cannot
-#   COPY ../something /something, because the first step of a docker build
-#   is to send the context directory (and subdirectories) to the docker
-#   daemon.
-#
-# * If <src> is a directory, the entire contents of the directory are copied,
-#   including filesystem metadata.
-#   - Note: The directory itself is not copied, just its contents.
-#
-# * If <src> is any other kind of file, it is copied individually along with
-#   its metadata. In this case, if <dest> ends with a trailing slash /, it
-#   will be considered a directory and the contents of <src> will be written
-#   at <dest>/base(<src>).
-#
-# * If multiple <src> resources are specified, either directly or due to the
-#   use of a wildcard, then <dest> must be a directory, and it must end with
-#   a slash /.
-#
-# * If <dest> does not end with a trailing slash, it will be considered a
-#   regular file and the contents of <src> will be written at <dest>.
-#
-# * If <dest> doesn't exist, it is created along with all missing directories
-#   in its path.
-#
-# COPY <src>... <dest>
-# COPY ["<src>"... "<dest>"] (this form is required for paths containing
-#                             whitespace)
 COPY init.sh /opt/couchdb/innit.sh
 COPY cluster.sh /opt/couchdb/cluster.sh
 COPY --chown=couchdb:couchdb vm.args /opt/couchdb/etc/vm.args
-# The RUN instruction will execute any commands in a new layer on top of
-# the current image and commit the results. The resulting committed image
-# will be used for the next step in the Dockerfile.
-#
-# The exec form makes it possible to avoid shell string munging, and to
-# RUN commands using a base image that does not contain /bin/sh.
-#
-# * To use a different shell, other than '/bin/sh', use the exec form
-#   passing in the desired shell. For example, RUN ["/bin/bash", "-c",
-#   "echo hello"]
-# * The exec form is parsed as a JSON array, which means that you must
-#   use double-quotes (") around words not single-quotes (').
-# * The exec form does not invoke a command shell. This means that normal
-#   shell processing like variable substitution does not happen.
-#
-# Note: To use a different shell, other than ‘/bin/sh’, use the exec form
-#       passing in the desired shell. For example, RUN ["/bin/bash", "-c", "echo hello"]
-# Note: The exec form is parsed as a JSON array, which means that you must
-#       use double-quotes (“) around words not single-quotes (‘).
-# Note: Unlike the shell form, the exec form does not invoke a command shell.
-#       This means that normal shell processing does not happen. For example,
-#       RUN [ "echo", "$HOME" ] will not do variable substitution on $HOME.
-#       If you want shell processing then either use the shell form or execute a
-#       shell directly, for example: RUN [ "sh", "-c", "echo $HOME" ].
-# Note: In the JSON form, it is necessary to escape backslashes. This is particularly
-#       relevant on Windows where the backslash is the path separator. The following line
-#       would otherwise be treated as shell form due to not being valid JSON, and fail in an
-#       unexpected way: RUN ["c:\windows\system32\tasklist.exe"] The correct syntax for this
-#       example is: RUN ["c:\\windows\\system32\\tasklist.exe"]
-#
-# RUN <command> (the command is run in a shell - /bin/sh -c - shell form)
-# RUN ["executable", "param1", "param2"] (exec form)
+
 # install erlang
 RUN apt update; \
     apt-get install wget; \
@@ -166,9 +12,9 @@ RUN apt update; \
     echo "deb https://packages.erlang-solutions.com/ubuntu focal contrib" | tee /etc/apt/sources.list.d/erlang.list; \
     apt update; \
     yes Y | apt install erlang
+
 # install jq
 RUN yes Y | apt-get install jq
 RUN yes Y | apt-get install sudo
-
 
 EXPOSE 5984 4369 9100-9200

@@ -1,19 +1,23 @@
 # Common vars
 availability_zone: melbourne-qh2-uom
 instance_image: 356ff1ed-5960-4ac2-96a1-0c0198e6a999
-instance_key_name: harry_Ubuntu
+instance_key_name: id_rsa
 instance_flavor: uom.mse.2c9g
 
 # Volume
 volumes:
-  - vol_name: couch-vol-1-1
+  - vol_name: couch-vol-1-docker
     vol_size: 10
-  - vol_name: couch-vol-1-2
-    vol_size: 100
-  - vol_name: couch-vol-2-1
+  - vol_name: couch-vol-1-data
+    vol_size: 70
+  - vol_name: couch-vol-2-docker
     vol_size: 10
-  - vol_name: couch-vol-2-2
-    vol_size: 100
+  - vol_name: couch-vol-2-data
+    vol_size: 70
+  - vol_name: couch-vol-3-docker
+    vol_size: 10
+  - vol_name: couch-vol-3-data
+    vol_size: 70
 
 # Security group
 security_groups:
@@ -80,6 +84,8 @@ security_groups:
 # Instance
 instances:
   - name: couch-server-1
-    volumes: ['couch-vol-1-1', 'couch-vol-1-2']
+    volumes: ['couch-vol-1-docker', 'couch-vol-1-data']
   - name: couch-server-2
-    volumes: ['couch-vol-2-1', 'couch-vol-2-2']
+    volumes: ['couch-vol-2-docker', 'couch-vol-2-data']
+  - name: couch-server-3
+    volumes: ['couch-vol-3-docker', 'couch-vol-3-data']
