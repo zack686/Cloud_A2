@@ -37,7 +37,7 @@ def bulk_put_docs(db: couchdb.Database, doc_list: List[dict]) -> List[tuple]:
 
 
 if __name__ == "__main__":
-    db = connect_to_database("admin", "password", "172.26.130.11", "twitter")
+    db = connect_to_database("admin", "password", "172.26.131.127", "twitter")
     docs = [{"_id":"1","test":1}, {"_id":"2","test":2}]
     output = bulk_put_docs(db, docs)
     if output is not None:

@@ -63,6 +63,14 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 
+- name: Copy local.ini file
+  become: yes
+  ansible.builtin.template:
+    src: local.ini.j2
+    dest: "{{ docker_dir }}/local.ini"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
 #- name: Create Docker Registry
 #  docker_container:
 #    name: registry

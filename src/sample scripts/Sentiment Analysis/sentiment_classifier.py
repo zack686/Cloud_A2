@@ -17,7 +17,7 @@ def preprocess_text(text):
   return cleaned
 
 # Couchdb connector
-couch = couchdb.Server('http://admin:password@172.26.130.11:5984/')
+couch = couchdb.Server('http://admin:password@172.26.131.127:5984/')
 raw_twitter_db = couch['twitter']
 clf_coord = couch['clf_coordinate']
 clf_null = couch['clf_null']
