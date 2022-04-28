@@ -1,3 +1,4 @@
+import enum
 import couchdb
 from typing import List
 import uuid
@@ -11,13 +12,12 @@ def connect_to_database(username: str, password: str, ip_address: str, dbname: s
 
 
 def set_tweet_id(tweet: dict):
-    """ Set the couchdb id of a tweet in-place (if not already provided), as a
-    combination of the geo partition key and the tweet id. """
+    """ Set the couchdb id of a tweet in-place (overwriting any existing '_id'
+    key), as a combination of the geo partition key and the tweet id. """
 
-    if "_id" not in tweet:
-        geo = "geo" if tweet.get("geo_enabled", False) else "non-geo"
-        id = tweet.get("id", str(uuid.uuid4()))
-        tweet["_id"] = geo + ":" + id
+    geo = "geo" if tweet.get("geo", None) is not None else "non-geo"
+    id = str(tweet.get("id", uuid.uuid4()))
+    tweet["_id"] = geo + ":" + id
 
 
 def transform_extracted_tweets(tweet_list: List[dict]):
@@ -26,11 +26,12 @@ def transform_extracted_tweets(tweet_list: List[dict]):
     of tweets in-place by unnesting extracted tweets, ensuring that a
     partitioned key is set, and removing the revision number key. """
 
-    for tweet in tweet_list:
+    for (i, tweet) in enumerate(tweet_list):
         if "doc" in tweet:
             tweet = tweet["doc"]
             tweet.pop("_rev", None)
             set_tweet_id(tweet)
+        tweet_list[i] = tweet
 
 
 def put_tweet(db: couchdb.Database, tweet: dict) -> tuple:
@@ -59,12 +60,3 @@ def bulk_put_tweets(db: couchdb.Database, tweet_list: List[dict]) -> List[tuple]
 
     output = db.update(tweet_list)
     return [(doc_id, doc_rev) for (success, doc_id, doc_rev) in output if success]
-
-
-if __name__ == "__main__":
-    db = connect_to_database("admin", "password", "172.26.131.127", "twitter")
-    tweet_1 = {"id":"1","test":1}
-    tweet_2 = {"id":"2","test":2}
-    output = bulk_put_tweets(db, [tweet_1, tweet_2])
-    if output is not None:
-        print(output)
