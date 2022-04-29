@@ -1,0 +1,56 @@
+- name: IP Address
+  set_fact:
+    IpAdd: "{{ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0])}}"
+
+- name: Init a new swarm with default parameters
+  become: yes
+  community.docker.docker_swarm:
+    advertise_addr: '{{groups.couchdb[0]}}'
+    state: present
+  register: swarm
+  when: IpAdd == groups.couchdb[0]
+
+- set_fact: swarm_info="{{swarm}}"
+  when: IpAdd == groups.couchdb[0]
+
+- name: Get join-token for manager nodes
+  set_fact:
+    join_token_manager: "{{ hostvars[groups['couchdb'][0]].swarm.swarm_facts.JoinTokens.Manager }}"
+
+- name: Get join-token for worker nodes
+  set_fact:
+    join_token_worker: "{{ hostvars[groups['couchdb'][0]].swarm.swarm_facts.JoinTokens.Worker }}"
+
+- name: Add nodes to swarm
+  become: yes
+  community.docker.docker_swarm:
+    state: join
+    timeout: 300
+    advertise_addr: '{{ IpAdd }}'
+    join_token: '{{join_token_worker}}'
+    remote_addrs: '{{groups.couchdb[0]}}'
+  when: IpAdd != groups.couchdb[0]
+
+- name: Create a overlay network
+  become: yes
+  community.docker.docker_network:
+    name: couchdb
+    driver: "overlay"
+    attachable: yes
+  when: IpAdd == groups.couchdb[0]
+
+- name: Create dummy service
+  become: yes
+  docker_swarm_service:
+    name: myservice
+    image: alpine
+    mode: global
+    networks: couchdb
+  when: IpAdd == groups.couchdb[0]
+
+- name: Remove service
+  become: yes
+  docker_swarm_service:
+    name: myservice
+    state: absent
+  when: IpAdd == groups.couchdb[0]

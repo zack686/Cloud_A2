@@ -1,0 +1,26 @@
+- hosts: localhost
+  vars_files:
+    - host_vars/nectar.yaml
+  gather_facts: true
+
+  roles:
+    - role: deployment-common
+    - role: deployment-images
+    - role: deployment-volume
+    - role: deployment-security-group
+    - role: deployment-instance
+
+- hosts: '{{groups.couchdb}}'
+  vars_files:
+    - host_vars/couchdb.yaml
+  gather_facts: true
+  vars:
+    - ansible_user: ubuntu
+    - ansible_ssh_private_key_file: ~/.ssh/id_rsa
+    - ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+  roles:
+    - role: setup-common
+    - role: setup-volumes
+    - role: setup-docker
+    - role: setup-couchdb
