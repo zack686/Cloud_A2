@@ -3,6 +3,7 @@ import json
 import re
 import flair # Needs to be pip installed
 import couchdb 
+import sys
 clf = flair.models.TextClassifier.load("en-sentiment") # Load Classifier
 
 # Clean text for model input
@@ -17,15 +18,23 @@ def preprocess_text(text):
   return cleaned
 
 # Couchdb connector
-couch = couchdb.Server('http://admin:password@172.26.131.127:5984/')
+couch = couchdb.Server('http://admin:password@172.26.131.127:5984')
 raw_twitter_db = couch['twitter']
 clf_coord = couch['clf_coordinate']
 clf_null = couch['clf_null']
 
+# Retrieve Unclassified text
+with open('unclassified.txt', 'r') as file:
+  Lines = file.readlines()
+
+if len(Lines) == 0: # Close script if no new IDs
+  sys.exit()
+
 # Creating dataset
-for tweet in raw_twitter_db:
-    doc = raw_twitter_db[tweet]
-    tweet = doc["doc"]
+for id in Lines:
+    #doc = raw_twitter_db[tweet]
+    #tweet = doc["doc"]
+    tweet = raw_twitter_db[id.rstrip("\n")]
     processed = preprocess_text(tweet["text"])
 
     if processed != "" and processed != "rt": #Throwaway Tweets with empty strings
@@ -38,3 +47,5 @@ for tweet in raw_twitter_db:
       else:
         clf_null.save(instance)
 
+file.truncate(0)
+file.close()
