@@ -15,8 +15,12 @@ def set_tweet_id(tweet: dict):
     key), as a combination of the geo partition key and the tweet id. """
 
     geo = "geo" if tweet.get("geo", None) is not None else "non-geo"
-    id = tweet.get("id_str", str(tweet.get("id", uuid.uuid4())))
-    tweet["_id"] = geo + ":" + id
+    if "id_str" in tweet or "id" in tweet:
+        id = tweet.get("id_str", str(tweet.get("id")))
+        tweet["_id"] = geo + ":" + id
+    else:
+        tweet["_id"] = geo + ":" + str(uuid.uuid4())
+        tweet["unidentified"] = True
 
 
 def transform_extracted_tweets(tweet_list: List[dict]):
@@ -33,13 +37,15 @@ def transform_extracted_tweets(tweet_list: List[dict]):
         tweet_list[i] = tweet
 
 
-def put_tweet(db: couchdb.Database, tweet: dict) -> tuple:
+def put_tweet(db: couchdb.Database, tweet: dict, allow_unidentified: bool=False) -> tuple:
     """ Put one tweet in a couchdb database (paritioned depending on whether
     the tweet is geo-enabled or not), doing nothing if there is already a
     tweet in the database with the given id. In the case of a successful put,
     returns a tuple consisting of the document id and revision number. """
 
     set_tweet_id(tweet)
+    if "unidentified" in tweet and not allow_unidentified:
+        return
 
     try:
         return db.save(tweet)
@@ -47,7 +53,7 @@ def put_tweet(db: couchdb.Database, tweet: dict) -> tuple:
         return
 
 
-def bulk_put_tweets(db: couchdb.Database, tweet_list: List[dict]) -> List[tuple]:
+def bulk_put_tweets(db: couchdb.Database, tweet_list: List[dict], allow_unidentified: bool=False) -> List[tuple]:
     """ Put multiple tweets in a couchdb database, (paritioned depending on
     whether they are geo-enabled or not), ignoring tweets with an id already
     existing in the database. Returns a list of tuples consisting of the
@@ -56,6 +62,9 @@ def bulk_put_tweets(db: couchdb.Database, tweet_list: List[dict]) -> List[tuple]
 
     for tweet in tweet_list:
         set_tweet_id(tweet)
+
+    if not allow_unidentified:
+        tweet_list = [tweet for tweet in tweet_list if "unidentified" not in tweet]
 
     output = db.update(tweet_list)
     return [(doc_id, doc_rev) for (success, doc_id, doc_rev) in output if success]
