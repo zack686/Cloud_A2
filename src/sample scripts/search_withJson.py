@@ -1,5 +1,5 @@
 import tweepy
-
+import json
 bearer_token = "AAAAAAAAAAAAAAAAAAAAAEsNbgEAAAAA1X6WSK4PEKbw82NXCWGKCgD%2Bjt4%3DjXHskBEH0Fbt2ipcW79cwjZ1ScACNLrz6kTeCHylMkyn2b6Aks"
 
 client = tweepy.Client(bearer_token=bearer_token)
@@ -23,9 +23,10 @@ auth = tweepy.OAuth1UserHandler(
 
 api = tweepy.API(auth, wait_on_rate_limit=True)
 
-
-for tweet in tweepy.Cursor(api.search_tweets, q="Melbourne", count=1, tweet_mode='extended').items():
+number_of_items = 2
+for tweet in tweepy.Cursor(api.search_tweets, q="Melbourne", count=1, tweet_mode='extended').items(number_of_items):
     text = tweet._json["full_text"]
+    
     # print(text)
     # print('\n\n')
     print(tweet)
