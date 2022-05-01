@@ -17,4 +17,6 @@ printer = IDPrinter(
 )
 
 # Filter realtime Tweets by keyword
-printer.filter(track=["Twitter"])
+# Can use locations to track tweets via locations= 
+# https://developer.twitter.com/en/docs/twitter-api/v1/tweets/filter-realtime/guides/basic-stream-parameters
+printer.filter(track=["Keyword"], locations=[143.967590, -38.354580, 146.004181, -37.434522],languages=["en"])
