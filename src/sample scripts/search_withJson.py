@@ -13,8 +13,8 @@ query = 'covid -is:retweet'
 #                                      user_fields=['profile_image_url'], expansions='author_id', max_results=100)
 consumer_key = "3bYkLieVfNVSsez3IE0U84JwH"
 consumer_secret = "FA0GQQy2OKRRfQi7Oej7QpDKAnTXvDGZDBD5F10ra5WyH1EOp6"
-access_token = "1514846543748079616-0lUyVyqtSFUet7yksU1jlViBbidR4k"
-access_token_secret = "z0G87ZZTpLUSvRVnv04sCMl4OSNl3Shw7FT4hKJMX0b34"
+access_token = "1514846543748079616-YIPxVajLpxK8Bw8t9I5lYeR4AJ44Qe"
+access_token_secret = "EjTFLMHeG0aEUPLxW3PdDFs9AgayZwx85OnbGuWLgn8Vg"
 
 
 auth = tweepy.OAuth1UserHandler(
@@ -24,7 +24,7 @@ auth = tweepy.OAuth1UserHandler(
 api = tweepy.API(auth, wait_on_rate_limit=True)
 
 
-for tweet in tweepy.Cursor(api.search_tweets, q="Melbourne", count=10, tweet_mode='extended').items():
+for tweet in tweepy.Cursor(api.search_tweets, q="Melbourne", count=1, tweet_mode='extended').items():
     text = tweet._json["full_text"]
     # print(text)
     # print('\n\n')
