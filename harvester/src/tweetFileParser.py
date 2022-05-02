@@ -1,7 +1,8 @@
 import concurrent.futures
-import couchdb
 import json
 from typing import Dict, Tuple
+
+import couchdb
 
 from .couchDB import transform_extracted_tweets, bulk_put_tweets
 

@@ -1,8 +1,10 @@
-import couchdb
 import json
+
+import couchdb
 import tweepy
 
 from .couchDB import put_tweet
+
 
 def connect_to_twitter(consumer_key: str, consumer_secret: str, access_token: str,
     access_token_secret: str) -> tweepy.API:

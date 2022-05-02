@@ -1,0 +1,14 @@
+version: '3.6'
+
+services:
+  harvester:
+    build: ./harvester
+    environment:
+      - COUCHDB_USERNAME={{database_user}}
+      - COUCHDB_PASSWORD={{database_password}}
+      - COUCHDB_NODE_IP=127.0.0.1
+      - COUCHDB_DATABASE_NAME=twitter
+      - TWITTER_API_KEY={{twitter_api_key}}
+      - TWITTER_API_KEY_SECRET={{twitter_api_key_secret}}
+      - TWITTER_ACCESS_TOKEN={{twitter_access_token}}
+      - TWITTER_ACCESS_TOKEN_SECRET={{twitter_access_token_secret}}

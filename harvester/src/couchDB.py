@@ -1,6 +1,7 @@
-import couchdb
 from typing import List
 import uuid
+
+import couchdb
 
 
 def connect_to_database(username: str, password: str, ip_address: str, dbname: str) -> couchdb.Database:

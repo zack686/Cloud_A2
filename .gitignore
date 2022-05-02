@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 twitter_database.sh
-main.py
+/main.py
 openrc.sh
 unimelb-COMP90024-2022-grp-24-openrc.sh
 tinyTwitter.json
