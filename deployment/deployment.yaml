@@ -24,3 +24,18 @@
     - role: setup-volumes
     - role: setup-docker
     - role: setup-couchdb
+
+- hosts: '{{groups.flask}}'
+  vars_files:
+    - host_vars/flask.yaml
+  gather_facts: true
+  vars:
+    - ansible_user: ubuntu
+    - ansible_ssh_private_key_file: ~/.ssh/id_rsa
+    - ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+  roles:
+    - role: setup-common
+    - role: setup-volumes
+    - role: setup-docker
+    - role: setup-flask

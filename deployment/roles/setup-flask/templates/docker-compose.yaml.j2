@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+    frontend:
+        image: plotly-frontend:v1
+        stdin_open: true
+        tty: true
+        container_name: frontend
+        restart: always
+        command: "-setcookie cookie"
+        ports:
+            - "80:8050"
+        environment:
+            - COUCHDB_IP={{groups.couchdb[0]}}
+            - COUCHDB_USERNAME=admin
+            - COUCHDB_PASSWORD=password
+            - WORK_DIR=/var/lib/frontend/

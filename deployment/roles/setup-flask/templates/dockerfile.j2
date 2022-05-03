@@ -1,0 +1,19 @@
+# syntax=docker/dockerfile:1
+FROM python:3.8-slim-buster
+
+ADD frontend /var/lib/frontend
+
+
+# install requirements
+RUN pip install CouchDB; \
+    pip install plotly-express; \
+    pip install Shapely;\
+    pip install pandas; \
+    pip install dash
+
+## install jq
+#RUN apt update;
+#RUN yes Y | apt-get install jq
+#RUN yes Y | apt-get install sudo
+EXPOSE 8050
+ENTRYPOINT ["python3","/var/lib/frontend/app.py"]

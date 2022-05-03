@@ -3,6 +3,10 @@
   ansible.builtin.setup:
     gather_subset: all
 
+- name: Wait for sudo
+  become: yes
+  ansible.builtin.shell: while sudo fuser /var/lib/dpkg/lock >/dev/null 2>&1; do sleep 5; done;
+
 - name: Install dependencies
   tags: always
   become: yes

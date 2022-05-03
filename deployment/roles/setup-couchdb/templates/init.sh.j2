@@ -1,5 +1,4 @@
 #!/bin/sh
-sleep 30
 # First, get two UUIDs to use later on. Be sure to use the SAME UUIDs on all nodes.
 uuids=$(curl http://127.0.0.1:5984/_uuids?count=2)
 uuid1=$(echo $uuids | /usr/bin/jq --raw-output '.uuids[0]')
