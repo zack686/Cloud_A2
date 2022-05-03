@@ -8,5 +8,3 @@ curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1
 curl http://127.0.0.1:5984/
 sleep 15
 curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "finish_cluster"}'
-
-curl -X PUT "http://admin:password@127.0.0.1:5984/twitter?partitioned=true"

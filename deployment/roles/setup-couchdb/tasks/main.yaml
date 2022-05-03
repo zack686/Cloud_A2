@@ -47,6 +47,15 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 
+- name: Copy databases file
+  become: yes
+  ansible.builtin.template:
+    src: databases.sh.j2
+    dest: "{{ docker_dir }}/databases.sh"
+    mode: a+x
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
 - name: Copy docker file
   become: yes
   ansible.builtin.template:
@@ -117,4 +126,14 @@
 
 - ansible.builtin.debug:
     msg: "{{script_out2.stdout_lines}}"
+  when: IpAdd == groups.couchdb[0]
+
+- name: Create databases
+  become: yes
+  ansible.builtin.shell: sudo docker exec -it couchdb{{IpAdd}} ./opt/couchdb/databases.sh
+  when: IpAdd == groups.couchdb[0]
+  register: script_out3
+
+- ansible.builtin.debug:
+    msg: "{{script_out3.stdout_lines}}"
   when: IpAdd == groups.couchdb[0]
