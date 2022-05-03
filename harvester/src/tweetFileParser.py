@@ -1,6 +1,6 @@
 import concurrent.futures
 import json
-from typing import Dict, Tuple
+from typing import Tuple
 
 import couchdb
 

@@ -8,7 +8,7 @@ db = connect_to_database(
     os.environ["COUCHDB_USERNAME"],
     os.environ["COUCHDB_PASSWORD"],
     os.environ["COUCHDB_NODE_IP"],
-    os.environ["COUCHDB_DATABASE_NAME"],
+    "twitter"
 )
 collect_streamed_tweets_melbourne(
     db,
