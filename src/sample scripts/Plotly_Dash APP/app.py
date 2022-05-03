@@ -30,7 +30,7 @@ for suburb in state_shapes:
 
 # Couchdb connector
 couch = couchdb.Server('http://admin:password@172.26.131.127:5984')
-db = couch['clf_coordinate']
+db = couch['tagged']
 
 # Calculating sentiment ratios
 count = 0
@@ -94,29 +94,49 @@ for row in schools:
         temp.append(instance["y"])
         temp.append(instance["postal_town"])
         temp.append(instance["lga_name"])
+        temp.append(instance["education_sector"])
         temp.append(instance["school_name"])
         restaraunts_bars.append(temp)
-restaraunts_bars = pd.DataFrame(restaraunts_bars)
-restaraunts_bars.columns = ["x","y","postal","lga","name"]
+schools_stat = pd.DataFrame(restaraunts_bars)
+schools_stat.columns = ["x","y","postal","lga","sector","name"]
 
-scatter = px.scatter_mapbox(restaraunts_bars,
-                    lat=restaraunts_bars.y,
-                    lon=restaraunts_bars.x,
+rankings = pd.read_csv("school_rank_stats.csv")
+schools_stat = schools_stat.merge(rankings, on = "name", how = "outer")
+schools_stat["40_plus_top30"] = schools_stat["40_plus_top30"].fillna("no")
+schools_stat["Median VCE study score"] = schools_stat["Median VCE study score"].fillna(0)
+schools_stat["Percentage of study scores of 40 and over"] = schools_stat["Percentage of study scores of 40 and over"].fillna(0)
+
+scatter = px.scatter_mapbox(schools_stat,
+                    lat=schools_stat.y,
+                    lon=schools_stat.x,
                     mapbox_style="carto-positron",
                     zoom=8,height=600,
                     center = dict(lat= -37.8136 , lon=144.9631),  
                     title = f"<b>Schools</b>",
-                    custom_data=["name","postal","lga"]
+                    custom_data=["name","sector","postal","lga","Median VCE study score","Percentage of study scores of 40 and over"],
+                    color="40_plus_top30"
                     )
 
 scatter.update_traces(
     hovertemplate="<br>".join([
         "Name: %{customdata[0]}",
-        "Postal Suburb: %{customdata[1]}",
-        "LGA: %{customdata[2]}"
+        "Sector: %{customdata[1]}",
+        "Postal Suburb: %{customdata[2]}",
+        "LGA: %{customdata[3]}",
+        "Median VCE study score: %{customdata[4]}",
+        "Study scores of 40 and over: %{customdata[5]}%"
     ])
 )
 
+###### Bar Chart ###### 
+median_score_rank_lga = pd.DataFrame(schools_stat.loc[schools_stat["Median VCE study score"]>31].groupby(["lga"]).count()["name"])
+median_score_rank_lga = median_score_rank_lga.sort_values("name", ascending=False).reset_index()
+
+median_score_rank_sub = pd.DataFrame(schools_stat.loc[schools_stat["Median VCE study score"]>31].groupby(["Locality"]).count()["name"])
+median_score_rank_sub = median_score_rank_sub.sort_values("name", ascending=False)[:10].reset_index()
+
+bar_lga = px.bar(median_score_rank_lga, x='lga', y='name')
+bar_sub = px.bar(median_score_rank_sub, x='Locality', y='name')
 
 ###### Dashboard App ###### 
 app = Dash(__name__)
@@ -132,9 +152,23 @@ app.layout = html.Div(children=[
         figure=choropleth
     ),
 
+    html.Div(children=[
     dcc.Graph(
         id='scatter',
-        figure=scatter
+        figure=scatter,
+        style={'display': 'inline-block'}
+    ),
+
+    dcc.Graph(
+        id='bar_sub',
+        figure=bar_sub,
+        style={'display': 'inline-block'}
+    )
+    ]),
+
+    dcc.Graph(
+        id='bar chart',
+        figure=bar_lga
     )
 ])
 

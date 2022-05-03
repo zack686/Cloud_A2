@@ -1,0 +1,539 @@
+name,Locality,Percentage of VCE students applying for tertiary places,Percentage of satisfactory VCE completions in 2021,Median VCE study score,Percentage of study scores of 40 and over,study_score_rank,40_plus_top30,study_score_top30
+Academy of Mary Immaculate,FITZROY,94,100,30,6.5,mid_50,no,no
+Aitken College,GREENVALE,94,98,28,2.7,mid_50,no,no
+Al Iman College,MELTON SOUTH,36,100,26,3.9,low_25,no,no
+Al Siraat College,EPPING,95,100,30,4.6,mid_50,no,no
+Al-Taqwa College,TRUGANINA,97,100,26,0.7,low_25,no,no
+Albert Park College,ALBERT PARK,86,99,30,9,mid_50,no,no
+Alexandra Secondary College,ALEXANDRA,70,100,26,0.8,low_25,no,no
+Alia College,HAWTHORN EAST,25,83,24,0,low_25,no,no
+Alice Miller School,MACEDON,75,100,35,14.2,top_25,no,yes
+Alkira Secondary College,CRANBOURNE NORTH,82,97,29,3.5,mid_50,no,no
+Alphington Grammar School,ALPHINGTON,98,100,31,5,mid_50,no,no
+Altona College,ALTONA,87,100,31,7.7,mid_50,no,no
+Antonine College,PASCOE VALE SOUTH,94,100,28,5.2,mid_50,no,no
+Apollo Bay P-12 College,APOLLO BAY,69,100,33,5.4,top_25,no,no
+Aquinas College,RINGWOOD,85,99,31,7.5,mid_50,no,no
+Ararat Secondary College,ARARAT,53,89,25,2.7,low_25,no,no
+Ashwood High School,ASHWOOD,96,100,33,10.8,top_25,no,no
+Assumption College,KILMORE,75,100,28,4,mid_50,no,no
+Auburn High School,HAWTHORN EAST,94,100,31,10.6,mid_50,no,no
+Australian Internatl Academy,COBURG,95,97,24,0.6,low_25,no,no
+Australian Internatl Academy,CAROLINE SPRINGS,100,100,26,2.6,low_25,no,no
+Ave Maria College,ABERFELDIE,96,100,31,5.8,mid_50,no,no
+Avila College,MOUNT WAVERLEY,98,100,32,7.2,top_25,no,no
+Bacchus Marsh College,BACCHUS MARSH,54,100,25,2.4,low_25,no,no
+Bacchus Marsh Grammar,BACCHUS MARSH,88,100,31,9.1,mid_50,no,no
+Baimbridge College,HAMILTON,52,97,24,2.1,low_25,no,no
+Bairnsdale Secondary College,BAIRNSDALE,61,98,26,2.8,low_25,no,no
+Balcombe Grammar School,MOUNT MARTHA,85,100,32,8.4,top_25,no,no
+Ballarat Christian College,SEBASTOPOL,60,100,22,0,low_25,no,no
+Ballarat Clarendon College,BALLARAT,93,100,37,32.5,top_25,yes,yes
+Ballarat Grammar,WENDOUREE,91,100,32,13.3,top_25,no,no
+Ballarat High School,BALLARAT,61,94,28,1.8,mid_50,no,no
+Balwyn High School,BALWYN NORTH,91,99,32,16.9,top_25,no,no
+Bannockburn P-12 College,BANNOCKBURN,-,-,30,0,mid_50,no,no
+Bayside Christian College,LANGWARRIN SOUTH,79,100,30,6,mid_50,no,no
+Bayside P-12 College,NEWPORT,75,90,30,5,mid_50,no,no
+Bayswater Secondary College,BAYSWATER,50,94,26,0,low_25,no,no
+Bayview College,PORTLAND,86,95,28,0,mid_50,no,no
+Beaconhills College,BERWICK,93,99,29,5.8,mid_50,no,no
+Beaconhills College,PAKENHAM,68,98,30,5.7,mid_50,no,no
+Beaufort Secondary College,BEAUFORT,64,93,28,2,mid_50,no,no
+Beechworth Secondary College,BEECHWORTH,53,100,29,9.1,mid_50,no,no
+Belgrave Heights Christian Schl,BELGRAVE HEIGHTS,86,100,30,7.2,mid_50,no,no
+Bellarine Secondary College,DRYSDALE,77,97,27,2,mid_50,no,no
+Belmont High School,BELMONT,61,98,28,4.3,mid_50,no,no
+Benalla P-12 College,BENALLA,68,94,25,2,low_25,no,no
+Bendigo Senior Sec College,BENDIGO,57,96,26,1.9,low_25,no,no
+Bentleigh Secondary College,BENTLEIGH EAST,76,98,28,2.1,mid_50,no,no
+Berwick Grammar School,OFFICER,100,100,30,8.9,mid_50,no,no
+Berwick Secondary College,BERWICK,66,96,29,6.4,mid_50,no,no
+Beth Rivkah Ladies College,ST KILDA EAST,74,100,34,20.9,top_25,yes,no
+Bialik College,HAWTHORN,99,100,37,32.6,top_25,yes,yes
+Billanook College,MOOROOLBARK,97,99,31,5.4,mid_50,no,no
+Birchip P-12 School,BIRCHIP,75,100,30,2.4,mid_50,no,no
+Blackburn High School,BLACKBURN,84,99,29,5.1,mid_50,no,no
+Boort District P-12 School,BOORT,56,81,31,15.6,mid_50,no,no
+Boronia K-12 College,BORONIA,58,89,24,0.7,low_25,no,no
+Box Hill High School,BOX HILL,91,100,32,13.1,top_25,no,no
+Box Hill Institute - CAE campus,MELBOURNE,36,82,25,2,low_25,no,no
+Box Hill Senior Sec College,MONT ALBERT NORTH,52,97,24,1.7,low_25,no,no
+Braemar College,WOODEND,90,99,32,11.4,top_25,no,no
+Brauer College,WARRNAMBOOL,59,98,27,2.5,mid_50,no,no
+Braybrook College,BRAYBROOK,99,100,31,12.3,mid_50,no,no
+Brentwood Secondary College,GLEN WAVERLEY,81,99,29,5.7,mid_50,no,no
+Bright P-12 College,BRIGHT,83,100,28,4.7,mid_50,no,no
+Brighton Grammar School,BRIGHTON,94,100,34,17.7,top_25,no,no
+Brighton Secondary College,BRIGHTON EAST,87,98,29,7.6,mid_50,no,no
+Broadford Secondary College,BROADFORD,82,96,25,1.3,low_25,no,no
+Brunswick Secondary College,BRUNSWICK,86,99,30,9.2,mid_50,no,no
+Buckley Park College,ESSENDON,87,99,29,6.3,mid_50,no,no
+Bundoora Secondary College,BUNDOORA,77,95,28,1.3,mid_50,no,no
+Camberwell Anglican Girls GS,CANTERBURY,100,100,35,24.1,top_25,yes,yes
+Camberwell Grammar School,CANTERBURY,98,99,33,17.1,top_25,no,no
+Camberwell High School,CANTERBURY,92,99,30,7.6,mid_50,no,no
+Camperdown College,CAMPERDOWN,80,100,27,0,mid_50,no,no
+Cann River P-12 College,CANN RIVER,100,100,26,0,low_25,no,no
+Canterbury Girls Sec College,CANTERBURY,90,100,33,13.7,top_25,no,no
+Carey Baptist Grammar School,KEW,97,100,34,17.2,top_25,no,no
+Caroline Chisholm Catholic Coll,BRAYBROOK,91,99,28,4.3,mid_50,no,no
+Carrum Downs Sec College,CARRUM DOWNS,56,88,23,0,low_25,no,no
+Carwatha College P-12,NOBLE PARK NORTH,79,95,27,3,mid_50,no,no
+Casey Grammar School,CRANBOURNE,89,100,31,8.3,mid_50,no,no
+Casterton Secondary College,CASTERTON,56,100,29,10.5,mid_50,no,no
+Castlemaine Secondary College,CASTLEMAINE,65,95,26,0.7,low_25,no,no
+Cathedral College,WANGARATTA,59,100,30,4.4,mid_50,no,no
+Catherine McAuley College,BENDIGO,78,99,28,6.2,mid_50,no,no
+Catholic College Sale,SALE,63,99,28,5.7,mid_50,no,no
+Catholic College Wodonga,WODONGA,51,99,28,3.7,mid_50,no,no
+Catholic Ladies College,ELTHAM,95,99,31,7.7,mid_50,no,no
+Catholic Regional College,MELTON WEST,75,99,28,3,mid_50,no,no
+Catholic Regional College,SYDENHAM,81,100,28,2.5,mid_50,no,no
+Caulfield Grammar School,WHEELERS HILL,98,100,34,19.6,top_25,no,no
+Caulfield Grammar School,ST KILDA EAST,94,100,34,19.4,top_25,no,no
+Chairo Christian School,DROUIN,72,100,29,4.5,mid_50,no,no
+Chairo Christian School,NAR NAR GOON,73,95,28,3.5,mid_50,no,no
+Charles La Trobe P-12 College,MACLEOD WEST,97,97,23,1.3,low_25,no,no
+Charlton College,CHARLTON,50,100,28,6.5,mid_50,no,no
+Cheltenham Secondary College,CHELTENHAM,80,100,30,5.5,mid_50,no,no
+Chisholm Institute,FRANKSTON,47,90,23,0,low_25,no,no
+Chisholm Institute of TAFE,DANDENONG,29,75,23,0,low_25,no,no
+Christian College Institute,WAURN PONDS,86,100,30,5.9,mid_50,no,no
+Clonard College,HERNE HILL,71,99,29,5.9,mid_50,no,no
+Cobden Technical School,COBDEN,0,100,31,0,mid_50,no,no
+Cobram Anglican Grammar School,COBRAM,77,100,27,6.3,mid_50,no,no
+Cobram Secondary College,COBRAM,70,95,28,0,mid_50,no,no
+Coburg High School,COBURG,90,95,29,6.1,mid_50,no,no
+Cohuna Secondary College,COHUNA,71,95,26,1.9,low_25,no,no
+Colac Secondary College,COLAC,39,92,24,0,low_25,no,no
+Collingwood College,COLLINGWOOD,89,98,27,3.8,mid_50,no,no
+Copperfield College,DELAHEY,87,94,28,3,mid_50,no,no
+Cornish College,BANGHOLME,71,100,30,3.2,mid_50,no,no
+Corryong College,CORRYONG,47,100,31,10,mid_50,no,no
+Covenant College,BELL POST HILL,75,100,30,9.6,mid_50,no,no
+Craigieburn Secondary College,CRAIGIEBURN,60,96,22,1.4,low_25,no,no
+Cranbourne East Sec College,CRANBOURNE EAST,97,99,32,9.4,top_25,no,no
+Cranbourne Secondary College,CRANBOURNE,80,99,25,0.7,low_25,no,no
+Damascus College,MOUNT CLEAR,76,99,28,3,mid_50,no,no
+Dandenong High School,DANDENONG,78,93,26,1.3,low_25,no,no
+Darul Ulum College of Victoria,FAWKNER,68,98,31,6.8,mid_50,no,no
+Daylesford Secondary College,DAYLESFORD,75,91,29,6.7,mid_50,no,no
+De La Salle College,MALVERN,91,100,31,10.3,mid_50,no,no
+Derrinallum P12 College,DERRINALLUM,0,100,32,0,top_25,no,no
+Diamond Valley College,DIAMOND CREEK,64,98,27,2.8,mid_50,no,no
+Dimboola Memorial Sec College,DIMBOOLA,50,100,31,6.3,mid_50,no,no
+Donald High School,DONALD,88,100,30,7.7,mid_50,no,no
+Doncaster Secondary College,DONCASTER,85,99,29,5.3,mid_50,no,no
+Donvale Christian College,DONVALE,85,100,32,9.4,top_25,no,no
+Dromana Secondary College,DROMANA,65,100,31,9.5,mid_50,no,no
+Drouin Secondary College,DROUIN,69,93,29,1.8,mid_50,no,no
+East Doncaster Sec College,DONCASTER EAST,96,98,33,16.7,top_25,no,no
+East Loddon P-12 College,DINGEE,93,100,33,9.5,top_25,no,no
+East Preston Islamic College,PRESTON,70,91,21,2.2,low_25,no,no
+Echuca College,ECHUCA,50,100,26,1.1,low_25,no,no
+Edenhope College,EDENHOPE,100,100,28,0,mid_50,no,no
+Edinburgh College,LILYDALE,88,100,28,0,mid_50,no,no
+Elisabeth Murdoch College,LANGWARRIN,61,97,26,2,low_25,no,no
+Eltham College,RESEARCH,93,100,32,8.9,top_25,no,no
+Eltham High School,ELTHAM,74,98,29,3.6,mid_50,no,no
+Elwood College,ELWOOD,69,100,29,6.7,mid_50,no,no
+Emerald Secondary College,EMERALD,57,98,29,4.8,mid_50,no,no
+Emmanuel College,ALTONA NORTH,87,100,28,3.6,mid_50,no,no
+Emmanuel College,WARRNAMBOOL,70,97,29,4.7,mid_50,no,no
+Emmaus College,VERMONT SOUTH,86,100,30,7.7,mid_50,no,no
+Epping Secondary College,EPPING,81,95,28,1.8,mid_50,no,no
+Essendon Keilor College,ESSENDON,94,96,27,3.3,mid_50,no,no
+Euroa Secondary College,EUROA,44,100,24,0,low_25,no,no
+F.C.J. College,BENALLA,57,100,30,2.7,mid_50,no,no
+Fairhills High School,KNOXFIELD,73,96,25,1,low_25,no,no
+Fintona Girls School,BALWYN,100,100,36,27.8,top_25,yes,yes
+Firbank Grammar School,BRIGHTON,99,100,34,18.1,top_25,no,no
+Fitzroy High School,FITZROY NORTH,83,98,29,3.7,mid_50,no,no
+Flinders Christian Comm College,TYABB,86,100,29,5,mid_50,no,no
+Flinders Christian Comm College,CARRUM DOWNS,96,92,29,4.5,mid_50,no,no
+Footscray High School,FOOTSCRAY,74,99,29,4.6,mid_50,no,no
+Forest Hill College,BURWOOD EAST,98,98,28,0.8,mid_50,no,no
+Foster Secondary College,FOSTER,78,97,31,9.5,mid_50,no,no
+Fountain Gate Sec College,FOUNTAIN GATE,58,96,25,0.3,low_25,no,no
+Frankston High School,FRANKSTON,70,97,31,10,mid_50,no,no
+Galen College,WANGARATTA,71,99,28,2.5,mid_50,no,no
+Geelong Baptist College,LOVELY BANKS,58,100,24,3,low_25,no,no
+Geelong Grammar School,CORIO,80,100,32,10.6,top_25,no,no
+Geelong High School,EAST GEELONG,47,97,26,1.5,low_25,no,no
+Geelong Lutheran College,ARMSTRONG CREEK,80,100,30,6.2,mid_50,no,no
+Genazzano F.C.J. College,KEW,99,98,34,18.2,top_25,no,no
+Gilson College,TAYLORS HILL,91,100,29,5,mid_50,no,no
+Gilson College,MERNDA,100,100,29,2.9,mid_50,no,no
+Gippsland Grammar,SALE,84,99,31,7.6,mid_50,no,no
+Girton Grammar School,BENDIGO,95,100,33,18.2,top_25,no,no
+Gisborne Secondary College,GISBORNE,66,98,28,4.8,mid_50,no,no
+Gladstone Park Sec College,GLADSTONE PARK,82,100,28,4.4,mid_50,no,no
+Glen Eira College,CAULFIELD EAST,86,98,31,5.2,mid_50,no,no
+Glen Waverley Sec College,GLEN WAVERLEY,97,100,32,12.5,top_25,no,no
+Gleneagles Secondary College,ENDEAVOUR HILLS,67,99,28,2.8,mid_50,no,no
+Glenroy Secondary College,GLENROY,69,83,23,0,low_25,no,no
+Good News Lutheran College,TARNEIT,83,98,28,3.9,mid_50,no,no
+Good Shepherd College,HAMILTON,67,83,27,0,mid_50,no,no
+Gordon Institute of TAFE,GEELONG,33,100,27,2,mid_50,no,no
+Goulburn Valley Grammar Schl,SHEPPARTON,98,100,34,17.4,top_25,no,no
+Greater Shepparton SC McGuire,SHEPPARTON,57,93,24,0,low_25,no,no
+Greater Shepparton SC Wanganui,SHEPPARTON,57,97,24,0.4,low_25,no,no
+Greensborough Sec College,GREENSBOROUGH,91,100,26,1,low_25,no,no
+Grovedale College,GROVEDALE,53,95,24,0.8,low_25,no,no
+Haileybury College,KEYSBOROUGH,94,100,35,29.2,top_25,yes,yes
+Haileybury Girls College,KEYSBOROUGH,99,100,37,37.2,top_25,yes,yes
+Haileybury Rendall School,BERRIMAH,34,100,31,12,mid_50,no,no
+Hallam Senior Sec College,HALLAM,42,88,23,1.6,low_25,no,no
+Hampton Park Sec College,HAMPTON PARK,80,95,27,2.8,mid_50,no,no
+Hawkesdale College,HAWKESDALE,60,100,28,2.6,mid_50,no,no
+Hazel Glen College,DOREEN,67,98,27,2.2,mid_50,no,no
+Healesville High School,HEALESVILLE,90,97,27,5.2,mid_50,no,no
+Heathdale Christian College,WERRIBEE,96,99,29,4,mid_50,no,no
+Heatherton Christian College,CLARINDA,85,100,29,4.6,mid_50,no,no
+Heathmont College,HEATHMONT,72,100,26,1.1,low_25,no,no
+Heritage College,OFFICER,75,88,30,8.3,mid_50,no,no
+Heywood & District Sec College,HEYWOOD,33,100,26,0,low_25,no,no
+Highvale Secondary College,GLEN WAVERLEY,87,96,30,6.3,mid_50,no,no
+Highview Christian Comm College,MARYBOROUGH,78,100,28,5.9,mid_50,no,no
+Hillcrest Christian College,CLYDE NORTH,85,100,31,5.8,mid_50,no,no
+Holmes Grammar School,MELBOURNE,89,100,30,4.4,mid_50,no,no
+Holy Trinity Lutheran College,HORSHAM,100,100,30,19.3,mid_50,no,no
+Homestead Senior Sec College,POINT COOK,-,-,29,3.3,mid_50,no,no
+Hopetoun P-12 College,HOPETOUN,33,100,30,13.3,mid_50,no,no
+Hoppers Crossing Sec College,HOPPERS CROSSING,72,99,28,3.3,mid_50,no,no
+Horsham College,HORSHAM,67,99,30,4.1,mid_50,no,no
+Hume Anglican Grammar,MICKLEHAM,95,100,30,5.3,mid_50,no,no
+Hume Central Sec College,BROADMEADOWS,87,97,27,3.3,mid_50,no,no
+Huntingtower School,MOUNT WAVERLEY,99,99,37,31.6,top_25,yes,yes
+Ilim College,BROADMEADOWS,94,100,28,3.5,mid_50,no,no
+Ilim College Kiewa Campus,DALLAS,81,100,27,4.3,mid_50,no,no
+Islamic College of Melbourne,TARNEIT,100,100,31,5.9,mid_50,no,no
+Ivanhoe Girls' Grammar School,IVANHOE,97,100,35,25.5,top_25,yes,yes
+Ivanhoe Grammar School,IVANHOE,89,100,32,10.3,top_25,no,no
+Ivanhoe Grammar School,MERNDA,97,100,33,12,top_25,no,no
+John Fawkner College,FAWKNER,58,100,20,0,low_25,no,no
+John Monash Science School,CLAYTON,99,100,35,18.7,top_25,no,yes
+John Paul College,FRANKSTON,82,100,29,4,mid_50,no,no
+Kambrya College,BERWICK,94,98,31,6.4,mid_50,no,no
+Kaniva P-12 College,KANIVA,14,100,29,12.9,mid_50,no,no
+Kardinia Internatl College,BELL POST HILL,88,100,32,11.9,top_25,no,no
+Keilor Downs College,KEILOR DOWNS,88,98,28,3.9,mid_50,no,no
+Kerang Christian College,KERANG,50,100,27,4.2,mid_50,no,no
+Kerang Technical High School,KERANG,41,95,30,9.3,mid_50,no,no
+Kew High School,KEW EAST,89,99,30,8.3,mid_50,no,no
+Keysborough SC - Acacia,KEYSBOROUGH,87,95,28,2,mid_50,no,no
+Keysborough SC - Banksia,SPRINGVALE SOUTH,84,97,27,0.9,mid_50,no,no
+Kilbreda College,MENTONE,89,99,31,9.9,mid_50,no,no
+Killester College,SPRINGVALE,97,100,30,6,mid_50,no,no
+Kilvington Grammar School,ORMOND,97,99,34,14.5,top_25,no,no
+Kings College,WARRNAMBOOL,14,86,30,2.9,mid_50,no,no
+Kingswood College,BOX HILL,89,100,32,11.5,top_25,no,no
+Kolbe Catholic College,GREENVALE,93,99,26,1.4,low_25,no,no
+Koo Wee Rup Sec College,KOO WEE RUP,76,98,26,1.5,low_25,no,no
+Koonung Secondary College,MONT ALBERT NORTH,93,98,32,9.1,top_25,no,no
+Korowa Anglican Girls' School,GLEN IRIS,100,100,36,27.2,top_25,yes,yes
+Korumburra Sec College,KORUMBURRA,85,100,26,0.8,low_25,no,no
+Kurnai College,CHURCHILL,57,96,28,8.7,mid_50,no,no
+Kurunjang Secondary College,MELTON,78,98,26,2.6,low_25,no,no
+Kyabram P-12 College,KYABRAM,63,96,29,0,mid_50,no,no
+Kyneton Secondary College,KYNETON,72,100,26,1.5,low_25,no,no
+Lake Bolac College,LAKE BOLAC,50,100,24,0,low_25,no,no
+Lakes Entrance Sec College,LAKES ENTRANCE,47,87,26,5.2,low_25,no,no
+Lakeside Lutheran College,PAKENHAM,71,100,27,0.8,mid_50,no,no
+Lakeview Senior College,CAROLINE SPRINGS,88,97,27,3.1,mid_50,no,no
+Lalor North Sec College,EPPING,83,95,25,0.5,low_25,no,no
+Lalor Secondary College,LALOR,69,97,28,3.1,mid_50,no,no
+Lara Secondary College,LARA,46,86,24,2.4,low_25,no,no
+Lauriston Girls School,ARMADALE,100,100,36,33.7,top_25,yes,yes
+Lavalla Catholic College,TRARALGON,66,98,28,4.8,mid_50,no,no
+Laverton P-12 College,LAVERTON,96,96,22,0,low_25,no,no
+Leibler Yavneh College,ELSTERNWICK,92,100,37,29.4,top_25,yes,yes
+Leongatha Secondary College,LEONGATHA,85,97,27,1.3,mid_50,no,no
+Lighthouse Christian College,KEYSBOROUGH,98,100,30,6.6,mid_50,no,no
+Lighthouse Christian College,CRANBOURNE,95,100,31,12.4,mid_50,no,no
+Lilydale Heights College,LILYDALE,74,100,23,0.5,low_25,no,no
+Lilydale High School,LILYDALE,51,96,27,2.4,mid_50,no,no
+Little Yarra Steiner School,YARRA JUNCTION,57,100,32,5.6,top_25,no,no
+Loreto College,BALLARAT,82,100,31,10.9,mid_50,no,no
+Loreto Mandeville Hall,TOORAK,98,100,35,24.7,top_25,yes,yes
+Lorne P-12 College,LORNE,69,100,27,4.3,mid_50,no,no
+Lowanna College,NEWBOROUGH,53,92,25,1.6,low_25,no,no
+Lowther Hall Anglican GS,ESSENDON,100,100,35,19.9,top_25,no,yes
+Loyola College,WATSONIA,94,100,30,5.1,mid_50,no,no
+Luther College,CROYDON HILLS,86,100,32,9.5,top_25,no,no
+Lyndale Secondary College,DANDENONG NORTH,91,97,28,2.9,mid_50,no,no
+Lyndhurst Secondary College,CRANBOURNE,64,100,28,4,mid_50,no,no
+MacKillop Catholic Reg College,WERRIBEE,80,97,30,4.3,mid_50,no,no
+Macleod College,MACLEOD,87,100,26,0.4,low_25,no,no
+Mac.Robertson Girls' High Schl,MELBOURNE,99,100,37,31.4,top_25,yes,yes
+Maffra Secondary College,MAFFRA,77,97,28,6.5,mid_50,no,no
+Mallacoota P-12 College,MALLACOOTA,42,92,31,2.6,mid_50,no,no
+Manor Lakes P-12 College,WYNDHAM VALE,48,97,23,0.2,low_25,no,no
+Mansfield Secondary College,MANSFIELD,52,97,29,7.1,mid_50,no,no
+Maranatha Christian School,ENDEAVOUR HILLS,83,100,32,6.8,top_25,no,no
+Marcellin College,BULLEEN,91,100,30,8.5,mid_50,no,no
+Marian College Sunshine,SUNSHINE WEST,83,98,29,3.4,mid_50,no,no
+Marian College Ararat,ARARAT,71,98,27,2.6,mid_50,no,no
+Marian College Myrtleford,MYRTLEFORD,68,100,28,0,mid_50,no,no
+Maribyrnong Sec College,MARIBYRNONG,81,97,29,4.9,mid_50,no,no
+Marist - Sion College,WARRAGUL,74,98,29,4.9,mid_50,no,no
+Marist College Bendigo,MAIDEN GULLY,83,100,27,2,mid_50,no,no
+Mary MacKillop Catholic College,LEONGATHA,84,98,29,4.9,mid_50,no,no
+Maryborough Education Centre,MARYBOROUGH,82,95,26,0.6,low_25,no,no
+Marymede Catholic College,SOUTH MORANG,94,100,30,4.1,mid_50,no,no
+Mater Christi College,BELGRAVE,93,100,32,12.7,top_25,no,no
+Matthew Flinders Girls' SC,GEELONG,82,98,28,6.3,mid_50,no,no
+Mazenod College,MULGRAVE,93,100,32,11,top_25,no,no
+McClelland Secondary College,FRANKSTON,56,97,29,3.6,mid_50,no,no
+McKinnon Secondary College,MCKINNON,94,99,32,12.6,top_25,no,no
+Melba College,CROYDON,70,96,27,2,mid_50,no,no
+Melbourne Girls Grammar,SOUTH YARRA,96,100,34,18.4,top_25,no,no
+Melbourne Girls' College,RICHMOND,94,100,33,16,top_25,no,no
+Melbourne Grammar School,MELBOURNE,97,99,35,24.5,top_25,yes,yes
+Melbourne High School,SOUTH YARRA,98,99,36,30.2,top_25,yes,yes
+Melbourne Rudolf Steiner Schl,WARRANWOOD,95,100,32,13.8,top_25,no,no
+Melton Christian College,BROOKFIELD,77,98,26,1.4,low_25,no,no
+Melton Secondary College,MELTON,75,84,27,1,mid_50,no,no
+Mentone Girls' Grammar School,MENTONE,100,100,34,19.5,top_25,no,no
+Mentone Girls' Sec College,MENTONE,92,100,30,7.1,mid_50,no,no
+Mentone Grammar School,MENTONE,94,100,34,19.9,top_25,no,no
+Mercy College,COBURG,97,99,29,5.2,mid_50,no,no
+Mercy Regional College,CAMPERDOWN,59,98,27,1.4,mid_50,no,no
+Mernda Central P-12 College,MERNDA,-,-,33,5.3,top_25,no,no
+Methodist Ladies College,KEW,99,100,36,29.7,top_25,yes,yes
+Mildura Senior College,MILDURA,59,97,26,1.7,low_25,no,no
+Mill Park Secondary College,EPPING,80,94,24,1.6,low_25,no,no
+Minaret College,OFFICER,82,100,26,2.3,low_25,no,no
+Minaret College,SPRINGVALE,98,99,28,3.6,mid_50,no,no
+Mirboo North Sec College,MIRBOO NORTH,53,91,28,2.3,mid_50,no,no
+Monbulk College,MONBULK,52,94,27,4,mid_50,no,no
+Monivae College,HAMILTON,63,100,28,3.5,mid_50,no,no
+Monterey Secondary College,FRANKSTON NORTH,64,100,28,0,mid_50,no,no
+Montmorency Sec College,MONTMORENCY,63,97,29,4.3,mid_50,no,no
+Mooroolbark College,MOOROOLBARK,61,99,28,5.1,mid_50,no,no
+Mordialloc College,MORDIALLOC,89,99,28,6.7,mid_50,no,no
+Mornington Secondary College,MORNINGTON,58,97,28,2.9,mid_50,no,no
+Mortlake College,MORTLAKE,80,100,32,5.1,top_25,no,no
+Mount Alexander 7-12 Coll,FLEMINGTON,74,95,28,2.7,mid_50,no,no
+Mount Beauty Sec College,MOUNT BEAUTY,47,79,26,1.2,low_25,no,no
+Mount Clear College,MOUNT CLEAR,45,93,27,0.3,mid_50,no,no
+Mount Eliza Sec College,MOUNT ELIZA,89,99,30,6.5,mid_50,no,no
+Mount Erin College,FRANKSTON,55,94,27,0.7,mid_50,no,no
+Mount Evelyn Christian School,MOUNT EVELYN,60,100,28,4.7,mid_50,no,no
+Mount Lilydale Mercy College,LILYDALE,81,99,30,4,mid_50,no,no
+Mount Ridley P-12 College,CRAIGIEBURN,80,97,25,2,low_25,no,no
+Mount Rowan Secondary College,WENDOUREE,60,100,29,0,mid_50,no,no
+Mount Scopus Memorial College,BURWOOD,97,100,36,31.9,top_25,yes,yes
+Mount St Joseph Girls' College,ALTONA,96,100,31,6.5,mid_50,no,no
+Mount Waverley Sec College,MOUNT WAVERLEY,90,100,30,8.3,mid_50,no,no
+Mountain District Christian SC,MONBULK,33,100,27,7.7,mid_50,no,no
+Mt Hira College,KEYSBOROUGH,100,100,31,5,mid_50,no,no
+Mullauna College,MITCHAM,84,100,29,7.9,mid_50,no,no
+Murrayville Community College,MURRAYVILLE,50,100,28,0,mid_50,no,no
+Murtoa P-12 College,MURTOA,92,100,28,3.2,mid_50,no,no
+Myrtleford P-12 College,MYRTLEFORD,73,100,28,0,mid_50,no,no
+Nagle College,BAIRNSDALE,63,100,28,2.6,mid_50,no,no
+Narre Warren Sth P-12 College,NARRE WARREN SOUTH,99,97,32,6.1,top_25,no,no
+Nathalia Secondary College,NATHALIA,33,83,25,0,low_25,no,no
+Nazareth College,NOBLE PARK NORTH,88,100,30,5.6,mid_50,no,no
+Neerim District Sec College,NEERIM SOUTH,54,100,25,0,low_25,no,no
+Newcomb Secondary College,NEWCOMB,32,88,27,3.6,mid_50,no,no
+Newhaven College,RHYLL,73,100,31,9.6,mid_50,no,no
+Nhill College,NHILL,40,93,27,2.6,mid_50,no,no
+Noble Park Secondary College,NOBLE PARK,81,100,28,2,mid_50,no,no
+North Geelong Sec College,GEELONG NORTH,43,91,27,3.8,mid_50,no,no
+Northcote High School,NORTHCOTE,92,98,31,10.3,mid_50,no,no
+Northern Bay P-12 College,CORIO,44,92,23,1.9,low_25,no,no
+Northern College of Arts & Tech,PRESTON EAST,76,97,28,2.1,mid_50,no,no
+Northside Christian College,BUNDOORA,85,100,30,6.5,mid_50,no,no
+Norwood Secondary College,RINGWOOD,70,98,28,4.4,mid_50,no,no
+Nossal High School,BERWICK,100,100,36,26.9,top_25,yes,yes
+Notre Dame College,SHEPPARTON,66,99,26,3.2,low_25,no,no
+Numurkah Secondary College,NUMURKAH,72,100,27,1.3,mid_50,no,no
+Nunawading Christian College,NUNAWADING,97,100,31,9.1,mid_50,no,no
+Oakleigh Grammar,OAKLEIGH,86,100,29,4.4,mid_50,no,no
+Oberon High School,ARMSTRONG CREEK,66,100,30,3,mid_50,no,no
+Officer Secondary College,OFFICER,72,97,26,0.8,low_25,no,no
+OneSchool Global Vic,MELTON WEST,0,100,32,11.2,top_25,no,no
+Orbost Secondary College,ORBOST,33,80,27,0,mid_50,no,no
+Our Lady of Mercy College,HEIDELBERG,100,100,32,9.8,top_25,no,no
+Our Lady of Sacred Heart Coll,BENTLEIGH,99,100,31,8.3,mid_50,no,no
+Our Lady of Sion College,BOX HILL,97,100,32,9.3,top_25,no,no
+Ouyen P-12 College,OUYEN,75,100,27,4.4,mid_50,no,no
+Overnewton Anglican Comm Coll,KEILOR,94,100,30,4.1,mid_50,no,no
+Oxley Christian College,CHIRNSIDE PARK,83,100,32,9.2,top_25,no,no
+Ozford College,MELBOURNE,19,96,19,1.5,low_25,no,no
+Padua College,MORNINGTON,69,99,29,6.1,mid_50,no,no
+Pakenham Secondary College,PAKENHAM,97,100,26,0.6,low_25,no,no
+Parade College,BUNDOORA,90,100,30,6.5,mid_50,no,no
+Parkdale Secondary College,MORDIALLOC,62,97,30,7.5,mid_50,no,no
+Pascoe Vale Girls Sec College,PASCOE VALE,95,100,27,1,mid_50,no,no
+Patterson River Sec College,CARRUM,59,95,26,1.2,low_25,no,no
+Peninsula Grammar,MOUNT ELIZA,90,98,33,14.7,top_25,no,no
+Penleigh & Essendon Grammar,KEILOR EAST,99,100,34,19,top_25,no,no
+Penola Catholic College,BROADMEADOWS,76,99,26,2.3,low_25,no,no
+Phoenix P-12 Comm Coll,SEBASTOPOL,67,98,27,4,mid_50,no,no
+Plenty Valley Christian College,DOREEN,75,100,29,1.7,mid_50,no,no
+Point Cook Senior Sec College,POINT COOK,89,98,27,2.3,mid_50,no,no
+Portland Secondary College,PORTLAND,52,97,25,0.3,low_25,no,no
+Presbyterian Ladies' College,BURWOOD,99,100,36,30.4,top_25,yes,yes
+Princes Hill Sec College,PRINCES HILL,81,100,32,8.5,top_25,no,no
+Rainbow P-12 College,RAINBOW,71,100,27,0,mid_50,no,no
+Red Cliffs Secondary College,RED CLIFFS,31,93,25,0,low_25,no,no
+Red Rock Christian College,SUNBURY,-,-,29,0,mid_50,no,no
+Reservoir High School,RESERVOIR,79,96,28,3.9,mid_50,no,no
+Ringwood Secondary College,RINGWOOD,85,98,30,7,mid_50,no,no
+RMIT TAFE,MELBOURNE,62,78,26,1.9,low_25,no,no
+Robinvale College,ROBINVALE,60,100,27,2.6,mid_50,no,no
+Rochester Secondary College,ROCHESTER,83,100,28,1.4,mid_50,no,no
+Rosebud Secondary College,ROSEBUD,83,100,28,5.1,mid_50,no,no
+Rosehill Secondary College,NIDDRIE,90,99,29,5.4,mid_50,no,no
+Rowville Secondary College,ROWVILLE,62,95,26,3.1,low_25,no,no
+Roxburgh College,ROXBURGH PARK,91,93,25,3,low_25,no,no
+Rushworth P-12 College,RUSHWORTH,100,100,25,0,low_25,no,no
+Rutherglen High School,RUTHERGLEN,33,95,24,0.9,low_25,no,no
+Ruyton Girls' School,KEW,98,99,36,27.1,top_25,yes,yes
+Sacre Coeur,GLEN IRIS,100,100,35,18.6,top_25,no,yes
+Sacred Heart College,YARRAWONGA,80,100,29,4.5,mid_50,no,no
+Sacred Heart College Geelong,NEWTOWN,90,100,32,12.8,top_25,no,no
+Sacred Heart College Kyneton,KYNETON,81,100,30,3.7,mid_50,no,no
+Sacred Heart Girls' College,HUGHESDALE,97,99,32,8.8,top_25,no,no
+Saint Ignatius College,DRYSDALE,78,100,31,6.9,mid_50,no,no
+Sale College,SALE,46,94,26,0,low_25,no,no
+Salesian College,CHADSTONE,83,99,31,8.5,mid_50,no,no
+Salesian College Sunbury,SUNBURY,72,99,28,3.1,mid_50,no,no
+Sandringham College,SANDRINGHAM,78,94,30,5.9,mid_50,no,no
+Santa Maria College,NORTHCOTE,97,100,32,10.8,top_25,no,no
+Scoresby Secondary College,SCORESBY,53,100,27,1.4,mid_50,no,no
+Scotch College,HAWTHORN,97,100,34,20.9,top_25,yes,no
+Seymour College,SEYMOUR,67,100,27,2.8,mid_50,no,no
+Shelford Girls' Grammar,CAULFIELD NORTH,98,100,35,23,top_25,yes,yes
+Shepparton Christian College,SHEPPARTON,58,100,29,0,mid_50,no,no
+Sherbrooke Community School,SASSAFRAS,50,100,30,20,mid_50,yes,no
+Siena College,CAMBERWELL,99,100,34,16.8,top_25,no,no
+Simonds Catholic College,FITZROY NORTH,93,100,30,7.3,mid_50,no,no
+Sirius College - Eastmeadows,BROADMEADOWS,99,100,31,5.9,mid_50,no,no
+Sirius College - Keysborough,KEYSBOROUGH,91,100,29,4,mid_50,no,no
+Sirius College - Meadow Fair,BROADMEADOWS,95,100,31,8,mid_50,no,no
+Somerville Secondary College,SOMERVILLE,100,100,27,0,mid_50,no,no
+South Oakleigh Sec College,OAKLEIGH SOUTH,78,99,28,1.8,mid_50,no,no
+Southern Cross Grammar,CAROLINE SPRINGS,91,100,31,9.6,mid_50,no,no
+Springside West Sec College,FRASER RISE,95,95,28,3.3,mid_50,no,no
+St Albans Secondary College,ST ALBANS,92,97,30,8.2,mid_50,no,no
+St Aloysius College,NORTH MELBOURNE,100,100,32,10.8,top_25,no,no
+St Andrews Christian College,WANTIRNA SOUTH,91,98,33,12.3,top_25,no,no
+St Arnaud Secondary College,ST ARNAUD,100,100,28,0,mid_50,no,no
+St Augustine's College,KYABRAM,79,100,26,2.9,low_25,no,no
+St Bede's College,MENTONE,80,100,30,6.4,mid_50,no,no
+St Bernard's College,ESSENDON,83,100,30,5.3,mid_50,no,no
+St Brigid's College,HORSHAM,71,100,28,0,mid_50,no,no
+St Catherine's School,TOORAK,98,100,37,32.2,top_25,yes,yes
+St Columba's College,ESSENDON,97,100,32,12.7,top_25,no,no
+St Francis Xavier College,BEACONSFIELD,71,99,29,4.3,mid_50,no,no
+St Helena Secondary College,ELTHAM,77,99,29,3.5,mid_50,no,no
+St John's Greek Orth College,PRESTON,82,100,29,0,mid_50,no,no
+St John's Regional College,DANDENONG,78,97,26,3,low_25,no,no
+St Joseph's College,ECHUCA,75,98,28,3.1,mid_50,no,no
+St Joseph's College,FERNTREE GULLY,81,100,31,9.2,mid_50,no,no
+St Joseph's College,MILDURA,67,100,28,1.8,mid_50,no,no
+St Joseph's College,NEWTOWN,65,99,31,8.3,mid_50,no,no
+St Kevin's College,TOORAK,98,100,35,22,top_25,yes,yes
+St Leonard's College,BRIGHTON EAST,96,99,34,16.8,top_25,no,no
+St Margaret's School,BERWICK,98,100,34,17.8,top_25,no,no
+St Mary MacKillop College,SWAN HILL,84,100,28,4.2,mid_50,no,no
+St Mary of the Angels School,NATHALIA,73,100,27,2.2,mid_50,no,no
+St Mary's College Melbourne,ST KILDA EAST,89,100,29,3.6,mid_50,no,no
+St Mary's Coptic Orth College,COOLAROO,83,93,28,5.5,mid_50,no,no
+St Michael's Grammar School,ST KILDA,93,100,34,13.8,top_25,no,no
+St Monica's College,EPPING,86,100,29,4.5,mid_50,no,no
+St Patrick's College,BALLARAT,68,99,28,5.5,mid_50,no,no
+St Paul's Anglican Grammar Schl,WARRAGUL,90,100,31,8.3,mid_50,no,no
+St Peter's College,CRANBOURNE,84,97,25,1.3,low_25,no,no
+St Thomas Aquinas College,TYNONG,47,100,28,0,mid_50,no,no
+Star of the Sea College,BRIGHTON,100,100,33,17.6,top_25,no,no
+Staughton College,MELTON SOUTH,60,95,26,1.3,low_25,no,no
+Stawell Secondary College,STAWELL,50,96,24,1.9,low_25,no,no
+Stott's College,MELBOURNE,46,88,21,0,low_25,no,no
+Strathcona Baptist Girls GS,CANTERBURY,97,100,35,20.5,top_25,yes,yes
+Strathmore Secondary College,STRATHMORE,83,97,30,7.2,mid_50,no,no
+Sunbury College,SUNBURY,60,92,26,3.2,low_25,no,no
+Sunbury Downs Sec College,SUNBURY,61,99,30,2.7,mid_50,no,no
+Sunshine College,SUNSHINE WEST,62,94,27,2.1,mid_50,no,no
+Surf Coast Sec College,TORQUAY,61,98,27,2.4,mid_50,no,no
+Suzanne Cory High School,WERRIBEE,98,100,34,17.2,top_25,no,no
+Swan Hill College,SWAN HILL,83,98,26,1.4,low_25,no,no
+Swifts Creek P-12 School,SWIFTS CREEK,86,100,30,6.3,mid_50,no,no
+Swinburne Senior Sec College,HAWTHORN,74,96,28,2.8,mid_50,no,no
+Swinburne Uni of Tech - TAFE,CROYDON,46,88,25,1.3,low_25,no,no
+Sydney Road Community School,BRUNSWICK,29,100,27,0,mid_50,no,no
+TAFE Gippsland,NEWBOROUGH,9,73,30,0,mid_50,no,no
+Tallangatta Secondary College,TALLANGATTA,50,100,26,0,low_25,no,no
+Tarneit Senior College,TARNEIT,69,96,24,0.6,low_25,no,no
+Taylors Lakes Sec College,TAYLORS LAKES,88,99,26,3.6,low_25,no,no
+Templestowe College,TEMPLESTOWE LOWER,64,98,30,6.6,mid_50,no,no
+Terang College Sec Campus,TERANG,50,100,26,3.7,low_25,no,no
+The Geelong College,NEWTOWN,91,100,33,15.6,top_25,no,no
+The Grange P-12 College,HOPPERS CROSSING,65,91,22,1.6,low_25,no,no
+The Hamilton & Alexandra Coll,HAMILTON,86,100,31,3.7,mid_50,no,no
+The King David School,ARMADALE,100,100,36,26.8,top_25,yes,yes
+The Knox School,WANTIRNA SOUTH,93,98,33,16.1,top_25,no,no
+Thomas Carr College,TARNEIT,90,98,27,2.1,mid_50,no,no
+Thomastown Secondary College,THOMASTOWN,66,92,26,2.9,low_25,no,no
+Thornbury High School,THORNBURY,89,97,29,6.3,mid_50,no,no
+Timboon P-12 School,TIMBOON,77,100,28,3.8,mid_50,no,no
+Tintern Grammar,RINGWOOD EAST,92,100,30,7.2,mid_50,no,no
+Toorak College,MOUNT ELIZA,96,100,34,14.3,top_25,no,no
+Trafalgar High School,TRAFALGAR,64,95,28,2.3,mid_50,no,no
+Traralgon College,TRARALGON,44,95,27,1.8,mid_50,no,no
+Trinity College Colac,COLAC,65,100,29,1.8,mid_50,no,no
+Trinity Grammar School,KEW,98,99,34,21.7,top_25,yes,no
+Tyrrell College,SEA LAKE,100,100,30,3.1,mid_50,no,no
+University High School,PARKVILLE,85,98,31,13.3,mid_50,no,no
+Upper Yarra Secondary College,YARRA JUNCTION,49,90,25,0,low_25,no,no
+Upwey High School,UPWEY,70,94,27,1.3,mid_50,no,no
+Vermont Secondary College,VERMONT,78,100,31,9.8,mid_50,no,no
+Victoria University Polytechnic,FOOTSCRAY,54,96,20,0,low_25,no,no
+Victoria University SC,ST ALBANS,94,98,28,4.9,mid_50,no,no
+Victorian College for the Deaf,MELBOURNE,-,-,35,25,top_25,yes,yes
+Victorian College of the Arts,SOUTHBANK,68,100,33,15.4,top_25,no,no
+Victory Christian College,STRATHDALE,69,100,28,4.9,mid_50,no,no
+Victory Lutheran College,WEST WODONGA,68,97,30,11.3,mid_50,no,no
+Viewbank College,VIEWBANK,80,99,30,3.9,mid_50,no,no
+Virtual School Victoria,THORNBURY,32,84,28,4.7,mid_50,no,no
+Wallan Secondary College,WALLAN,60,92,24,0,low_25,no,no
+Wangaratta High School,WANGARATTA,57,92,28,7,mid_50,no,no
+Wantirna College,WANTIRNA,59,93,28,3.2,mid_50,no,no
+Warracknabeal Sec College,WARRACKNABEAL,85,100,28,3.3,mid_50,no,no
+Warragul Regional College,WARRAGUL,58,95,25,0,low_25,no,no
+Warrandyte High School,WARRANDYTE,74,95,25,2.2,low_25,no,no
+Warrnambool College,WARRNAMBOOL,59,96,27,1.4,mid_50,no,no
+Waverley Christian College,WANTIRNA SOUTH,92,99,33,14.8,top_25,no,no
+Wedderburn College,WEDDERBURN,80,80,29,0,mid_50,no,no
+Wellington Secondary College,MULGRAVE,83,99,28,4.8,mid_50,no,no
+Werribee Secondary College,WERRIBEE,96,95,29,4.9,mid_50,no,no
+Wesley College,MELBOURNE,97,100,32,9.6,top_25,no,no
+Wesley College,GLEN WAVERLEY,96,100,31,6.9,mid_50,no,no
+Westall Secondary College,CLAYTON SOUTH,90,100,27,3.8,mid_50,no,no
+Westbourne Grammar School,TRUGANINA,96,100,33,13.4,top_25,no,no
+Western Heights Sec College,HAMLYN HEIGHTS,56,97,24,1.4,low_25,no,no
+Western Port Sec College,HASTINGS,53,88,24,0.7,low_25,no,no
+Wheelers Hill Sec College,WHEELERS HILL,57,89,28,1.2,mid_50,no,no
+Whitefriars College,DONVALE,90,100,31,9.2,mid_50,no,no
+Whittlesea Secondary College,WHITTLESEA,60,100,25,0.5,low_25,no,no
+William Ruthven Sec College,RESERVOIR,100,100,27,2.7,mid_50,no,no
+Williamstown High School,WILLIAMSTOWN,78,100,32,10,top_25,no,no
+Wodonga Senior Sec College,WODONGA,40,91,24,1.9,low_25,no,no
+Wonthaggi Secondary College,WONTHAGGI,56,95,27,2.3,mid_50,no,no
+Woodleigh School,LANGWARRIN SOUTH,95,100,32,8.2,top_25,no,no
+Woodmans Hill Secondary College,BALLARAT EAST,53,100,29,2.8,mid_50,no,no
+Wycheproof P-12 College,WYCHEPROOF,67,100,33,9.1,top_25,no,no
+Wyndham Central Sec Coll,WERRIBEE,73,95,25,0.3,low_25,no,no
+Xavier College,KEW,92,99,33,13.1,top_25,no,no
+Yarra Hills Secondary College,MOOROOLBARK,54,97,25,0.6,low_25,no,no
+Yarra Valley Grammar School,RINGWOOD,92,100,34,18.9,top_25,no,no
+Yarram Secondary College,YARRAM,57,91,26,0.7,low_25,no,no
+Yarrawonga College P-12,YARRAWONGA,62,100,27,0.9,mid_50,no,no
+Yea High School,YEA,66,93,26,0.7,low_25,no,no
+Yeshivah College,ST KILDA EAST,88,100,35,14.3,top_25,no,no
+Yesodei HaTorah College,BRIGHTON,64,91,31,3.1,mid_50,no,no
