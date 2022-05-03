@@ -5,7 +5,8 @@ import tweepy
 
 from .couchDB import put_tweet
 
-
+    
+    
 def connect_to_twitter(consumer_key: str, consumer_secret: str, access_token: str,
     access_token_secret: str) -> tweepy.API:
     """ Returns a connection to the twitter API. """
@@ -29,9 +30,18 @@ def collect_streamed_tweets_melbourne(db: couchdb.Database, consumer_key: str,
     English, into the given couchDB database. """
 
     class CustomListener(tweepy.Stream):
+        def __init__(self):
+            self.api = connect_to_twitter(consumer_key, consumer_secret, access_token, access_token_secret)
+        
         def on_data(self, data):
             tweet = json.loads(data)
             put_tweet(db, tweet)
+            
+            # Get user's tweets from their timeline
+            for user_timeline_tweet in tweepy.Cursor(self.api.user_timeline, count=100, user_id=tweet["id"], tweet_mode="extended", exclude_replies=True, include_rts=False).items():
+                tweet = json.dumps(user_timeline_tweet._json) 
+                put_tweet(db, tweet)
+            
             return True
 
         def on_error(self, status):
