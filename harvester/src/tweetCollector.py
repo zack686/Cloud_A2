@@ -64,5 +64,5 @@ def collect_streamed_tweets_melbourne(db: couchdb.Database, consumer_key: str,
     # Handling 5xx error
     while reconnect == True:
         counter += 1
-        time.sleep(60*counter)
+        time.sleep(60*counter**2)
         collect_streamed_tweets_melbourne(db, consumer_key, consumer_secret, access_token, access_token_secret)
