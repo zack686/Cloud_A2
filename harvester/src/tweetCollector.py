@@ -1,11 +1,13 @@
+import time
 import json
+from typing import Counter
 
 import couchdb
 import tweepy
 
 from .couchDB import put_tweet
 
-    
+
     
 def connect_to_twitter(consumer_key: str, consumer_secret: str, access_token: str,
     access_token_secret: str) -> tweepy.API:
@@ -28,11 +30,14 @@ def collect_streamed_tweets_melbourne(db: couchdb.Database, consumer_key: str,
     """ Connect to the twitter streaming API, and collect tweets found within a
     bounding box representing the majority of Greater Melbourne, written in
     English, into the given couchDB database. """
-
+    
     class CustomListener(tweepy.Stream):
         def __init__(self):
+            global reconnect
+            self.reconnect = False
+            global counter
+            self.counter = 0
             self.api = connect_to_twitter(consumer_key, consumer_secret, access_token, access_token_secret)
-        
         def on_data(self, data):
             tweet = json.loads(data)
             put_tweet(db, tweet)
@@ -47,8 +52,17 @@ def collect_streamed_tweets_melbourne(db: couchdb.Database, consumer_key: str,
         def on_error(self, status):
             if status == 420:
                 return False
+            elif status >= 500 and status < 600:
+                self.restart = True
+                return False
             else:
                 return True
 
     stream = CustomListener(consumer_key, consumer_secret, access_token, access_token_secret)
     stream.filter(locations=[143.967590, -38.354580, 146.004181, -37.434522], languages=["en"])
+    
+    # Handling 5xx error
+    while reconnect == True:
+        counter += 1
+        time.sleep(60*counter)
+        collect_streamed_tweets_melbourne(db, consumer_key, consumer_secret, access_token, access_token_secret)
