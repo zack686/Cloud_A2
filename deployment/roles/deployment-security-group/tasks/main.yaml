@@ -5,12 +5,12 @@
     name: '{{ item.name }}'
     description: '{{ item.description }}'
     state: present
-  loop: '{{ security_groups }}'
+  loop: '{{ security_groups}}'
 
 - name: Create a list of security group names
   ansible.builtin.set_fact:
     sg_names: '{{ sg_names|default([]) + [ item.name ] }}'
-  loop: '{{ security_groups }}'
+  loop: '{{ security_groups}}'
 
 - ansible.builtin.debug:
     msg: "Security group(s) {{ sg_names }} have been created."
@@ -24,4 +24,13 @@
     port_range_max: '{{ item.port_range_max }}'
     remote_ip_prefix: '{{ item.remote_ip_prefix }}'
     state: present
-  loop: '{{ security_groups }}'
+  loop: '{{ security_groups[:-1]}}'
+
+- name: Create security group cluster rules
+  openstack.cloud.security_group_rule:
+    security_group: '{{ security_groups[-1].name }}'
+    protocol: '{{ security_groups[-1].protocol }}'
+    port_range_min: '{{ security_groups[-1].port_range_min }}'
+    port_range_max: '{{ security_groups[-1].port_range_max }}'
+    remote_group: '{{ security_groups[-1].remote_group }}'
+    state: present

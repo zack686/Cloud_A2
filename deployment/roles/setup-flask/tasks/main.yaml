@@ -1,0 +1,51 @@
+- name: Create Config directory
+  become: yes
+  ansible.builtin.file:
+    path: "{{ docker_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: yes
+    state: directory
+
+- name: Copy front-end files
+  become: yes
+  ansible.builtin.copy:
+    src: frontend
+    dest: "{{ docker_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Configure compose
+  become: yes
+  ansible.builtin.template:
+    src: docker-compose.yaml.j2
+    dest: "{{ docker_dir }}/docker-compose.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Copy dockerfile
+  become: yes
+  ansible.builtin.template:
+    src: dockerfile.j2
+    dest: "{{ docker_dir }}/dockerfile"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Build an image
+  become: yes
+  community.docker.docker_image:
+    build:
+      path: "{{ docker_dir }}"
+      dockerfile: dockerfile
+    name: plotly-frontend
+    tag: v1
+    source: build
+
+- name: Run docker compose
+  become: yes
+  community.docker.docker_compose:
+    project_src: "{{ docker_dir }}"
+    state: present
+    remove_orphans: yes
+    recreate: always
+    pull: no
