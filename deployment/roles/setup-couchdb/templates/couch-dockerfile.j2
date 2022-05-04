@@ -2,7 +2,7 @@ FROM couchdb
 
 COPY init.sh /opt/couchdb/innit.sh
 COPY cluster.sh /opt/couchdb/cluster.sh
-COPY databases.sh /opt/couch/databases.sh
+COPY databases.sh /opt/couchdb/databases.sh
 COPY --chown=couchdb:couchdb local.ini /opt/couchdb/etc/local.ini
 COPY --chown=couchdb:couchdb vm.args /opt/couchdb/etc/vm.args
 
