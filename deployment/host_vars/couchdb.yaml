@@ -2,8 +2,6 @@
 # Volume mounts
 volumes:
   - device: /dev/vdb
-    mountpoint: /var/lib/docker
-  - device: /dev/vdc
     mountpoint: /data
 
 couchdb_dir: /data

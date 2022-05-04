@@ -36,6 +36,6 @@
 
   roles:
     - role: setup-common
-    - role: setup-volumes
+#    - role: setup-volumes
     - role: setup-docker
     - role: setup-flask
