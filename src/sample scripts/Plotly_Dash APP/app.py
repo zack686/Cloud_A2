@@ -105,12 +105,14 @@ for row in schools:
         restaraunts_bars.append(temp)
 schools_stat = pd.DataFrame(restaraunts_bars)
 schools_stat.columns = ["x","y","postal","lga","sector","name"]
+schools_stat["postal"] = schools_stat["postal"].str.upper()
 
 rankings = pd.read_csv("school_rank_stats.csv")
 schools_stat = schools_stat.merge(rankings, on = "name", how = "outer")
 schools_stat["40_plus_top30"] = schools_stat["40_plus_top30"].fillna("no")
 schools_stat["Median VCE study score"] = schools_stat["Median VCE study score"].fillna(0)
 schools_stat["Percentage of study scores of 40 and over"] = schools_stat["Percentage of study scores of 40 and over"].fillna(0)
+schools_stat["sector"] = schools_stat["sector"].fillna("Independent")
 
 scatter = px.scatter_mapbox(schools_stat,
                     lat=schools_stat.y,
@@ -146,23 +148,52 @@ scatter.update_layout({
 'plot_bgcolor': 'rgba(0, 0, 0, 0)',
 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
 "legend_traceorder": "reversed"
+,'width': 600
 })
-scatter.update_layout(title_y=0.95)
+scatter.update_layout(title_y=0.95, margin=dict(t=75, b=100, l=30, r=50))
+
+###### Line Chart ######
+# Load suburb median house prices
+prices_suburb = pd.read_csv("median_house_price_suburb.csv")
+
+for i in prices_suburb.columns[1:13]:
+    prices_suburb[i] = prices_suburb[i].replace("-", None)
+    prices_suburb[i] = prices_suburb[i].replace("NA", None)
+prices_suburb = prices_suburb.dropna(how='any',axis=0) 
+
+for i in prices_suburb.columns[2:13]:
+    prices_suburb[i] = pd.to_numeric(prices_suburb[i])
+
+select_entry = ["MacRobertson Girls High School", "Melbourne High School", "John Monash Science School", "Nossal High School", "Suzanne Cory High School"]
+public_schools = schools_stat.loc[schools_stat['sector']=="Government"]
+public_schools = public_schools.loc[public_schools['name'].isin(select_entry)== False]
+sorted_public_schools = public_schools.sort_values("Percentage of study scores of 40 and over", ascending=False)[['name',"Percentage of study scores of 40 and over","postal"]]
+prices_time = prices_suburb.loc[prices_suburb['locality'].isin(sorted_public_schools[:10]['postal'])== True].T
+prices_time.columns = prices_time.iloc[0]
+prices_time = prices_time[1:]
+
+line = px.line(prices_time, x=prices_time.index, y=prices_time.columns[1:], title="<b>Median House Prices of TOP 10 Public School Suburbs</b>",
+                labels={'value': "Median House Price", "index": "Year", "variable":"Suburb"})
+
+line.update_layout({
+'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+'width': 800
+})
+line.update_layout(margin=dict(t=90, b=0, l=0, r=0))
 
 ###### Pie Chart ######
-schools_stat["sector"] = schools_stat["sector"].fillna("Independent")
-schools_stat.loc[schools_stat["name"] == "Mac.Robertson Girls' High Schl","sector"] = "Government"
 top30 = pd.DataFrame(schools_stat.loc[schools_stat['40_plus_top30'] == "yes"].groupby(["sector"]).count()["name"]).reset_index()
-
-pie = px.pie(top30, values='name', names='sector', title='<b>Proportion of Top30 Schools by Sector</b>',
+pie = px.pie(top30, values='name', names='sector', title='<b>Proportion of Top 30 Schools by Sector</b>',
             labels={'name': "count"})
 
 pie.update_layout({
 'plot_bgcolor': 'rgba(0, 0, 0, 0)',
 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+'width': 490
 })
 
-pie.update_layout(title_y=0.93, title_x=0.03, margin=dict(t=100, b=0, l=0, r=200),
+pie.update_layout(title_y=0.93, title_x=0.03, margin=dict(t=100, b=0, l=0, r=0),
                     legend=dict(yanchor="top",y=1,xanchor="right",x=1.1))
 
 ###### Bar Chart ###### 
@@ -182,7 +213,6 @@ bar_lga.update_layout({
 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
 'width': 600
 })
-
 
 bar_sub.update_layout({
 'plot_bgcolor': 'rgba(0, 0, 0, 0)',
@@ -212,7 +242,7 @@ completion_bar.update_layout({
 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
 'width': 680
 })
-
+completion_bar.update_layout(xaxis=dict(rangeslider=dict(visible=True), type = 'category'))
 completion_bar.update_yaxes(range=[60,100])
 
 ###### Dashboard App ###### 
@@ -245,6 +275,12 @@ app.layout = html.Div(style={'background-color':'powderblue',"border":"5px", "bo
         style={'display': 'inline-block','vertical-align': 'top'},
         config= dict(displayModeBar = False)
     ),
+    dcc.Graph(
+        id='line',
+        figure=line,
+        style={'display': 'inline-block','vertical-align': 'top'},
+        config= dict(displayModeBar = False)
+    ),
     html.Footer('''Note: here schools are ranked by the percentage of study scores 40 and over, the top 30 schools in Victoria are coloured red''',
     style={"padding-left": "20px"})
     ]),
@@ -265,7 +301,7 @@ app.layout = html.Div(style={'background-color':'powderblue',"border":"5px", "bo
     dcc.Graph(
         id='completion_bar',
         figure=completion_bar,
-        style={'display': 'inline-block', "overflow-y": "scroll"},
+        style={'display': 'inline-block'},
         config= dict(displayModeBar = False)
     ),
     html.Footer('''Note: here each school is ranked by their median VCE study score, top 25% of schools have a median score of 31 and above ''',
