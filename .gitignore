@@ -128,7 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-twitter_database.sh
+/docker-compose.yml
+/twitter_database.sh
 /main.py
 openrc.sh
 unimelb-COMP90024-2022-grp-24-openrc.sh

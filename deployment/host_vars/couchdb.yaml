@@ -5,9 +5,16 @@ volumes:
     mountpoint: /data
 
 couchdb_dir: /data
+harvester_dir: /harvester
 docker_dir: /var/lib/config
 
 # Couchdb parameters
 database_name: counchdb
 database_user: admin
 database_password: password
+
+# Harvester parameters
+twtr_api_k: 3bYkLieVfNVSsez3IE0U84JwH
+twtr_api_v: FA0GQQy2OKRRfQi7Oej7QpDKAnTXvDGZDBD5F10ra5WyH1EOp6
+twtr_access_k: 1514846543748079616-YIPxVajLpxK8Bw8t9I5lYeR4AJ44Qe
+twtr_access_v: EjTFLMHeG0aEUPLxW3PdDFs9AgayZwx85OnbGuWLgn8Vg

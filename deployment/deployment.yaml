@@ -24,6 +24,7 @@
     - role: setup-volumes
     - role: setup-docker
     - role: setup-couchdb
+    - role: setup-harvester
 
 - hosts: '{{groups.flask}}'
   vars_files:

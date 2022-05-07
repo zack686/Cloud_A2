@@ -16,8 +16,11 @@ def set_tweet_id(tweet: dict):
     key), as a combination of the geo partition key and the tweet id. """
 
     geo = "geo" if tweet.get("geo", None) is not None else "non-geo"
-    if "id_str" in tweet or "id" in tweet:
-        id = tweet.get("id_str", str(tweet.get("id")))
+    if "id_str" in tweet:
+        tweet["_id"] = geo + ":" + tweet.get("id_str")
+    elif "id" in tweet:
+        id = str(tweet.get("id"))
+        tweet["id_str"] = id
         tweet["_id"] = geo + ":" + id
     else:
         tweet["_id"] = geo + ":" + str(uuid.uuid4())

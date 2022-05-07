@@ -1,0 +1,37 @@
+---
+- name: Create harvester directory
+  become: yes
+  ansible.builtin.file:
+    path: "{{ harvester_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: yes
+    state: directory
+
+- name: Copy harvester files
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/../harvester"
+    dest: "{{ harvester_dir }}"
+
+- name: IP Address
+  set_fact:
+    IpAdd: "{{ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0])}}"
+
+- name: Configure compose
+  become: yes
+  ansible.builtin.template:
+    src: docker-compose.yaml.j2
+    dest: "{{ harvester_dir }}/docker-compose.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Run docker compose on noot node
+  become: yes
+  community.docker.docker_compose:
+    project_src: "{{ harvester_dir }}"
+    state: present
+    remove_orphans: yes
+    recreate: always
+    pull: no
+  when: IpAdd == groups.couchdb[0]
