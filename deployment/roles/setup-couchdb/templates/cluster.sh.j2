@@ -1,9 +1,40 @@
-#!/bin/sh
+#!/bin/bash
 sleep 3
+
+nodes=$(curl http://admin:password@127.0.0.1:5984/_membership)
+for i in {0..3}
+do
+  node=$(echo $nodes | /usr/bin/jq --raw-output '.cluster_nodes['$i']')
+  node_data=$(curl "http://admin:password@127.0.0.1:5984/_node/_local/_nodes/$node")
+  node_rev=$(echo $node_data | /usr/bin/jq --raw-output '._rev')
+  curl -X DELETE "http://admin:password@127.0.0.1:5984/_node/_local/_nodes/$node?rev=$node_rev"
+done
+
 curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "enable_cluster", "bind_address":"0.0.0.0", "username": "admin", "password":"password", "port": 5984, "node_count": "3", "remote_node": "{{groups.couchdb[1]}}", "remote_current_user": "admin", "remote_current_password": "password" }'
 curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "add_node", "host":"{{groups.couchdb[1]}}", "port": 5984, "username": "admin", "password":"password"}'
 curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "enable_cluster", "bind_address":"0.0.0.0", "username": "admin", "password":"password", "port": 5984, "node_count": "3", "remote_node": "{{groups.couchdb[2]}}", "remote_current_user": "admin", "remote_current_password": "password" }'
 curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "add_node", "host":"{{groups.couchdb[2]}}", "port": 5984, "username": "admin", "password":"password"}'
 curl http://127.0.0.1:5984/
 sleep 3
+
+databases=(twitter tagged aurin _users _replicator)
+meta_data=()
+for i in "${!databases[@]}"
+do
+    meta_data[$i]=$(curl http://admin:password@127.0.0.1:5984/_node/_local/_dbs/${databases[$i]})
+done
+
+for i in "${!meta_data[@]}"
+do
+    meta_data[$i]=$(echo ${meta_data[$i]} | /usr/bin/jq --raw-output '.changelog=[["add","00000000-7fffffff","couchdb@{{groups.couchdb[0]}}"], ["add","00000000-7fffffff","couchdb@{{groups.couchdb[1]}}"], ["add","00000000-7fffffff","couchdb@{{groups.couchdb[2]}}"], ["add","80000000-ffffffff","couchdb@{{groups.couchdb[0]}}"], ["add","80000000-ffffffff","couchdb@{{groups.couchdb[1]}}"], ["add","80000000-ffffffff","couchdb@{{groups.couchdb[2]}}"]]'\
+    | /usr/bin/jq --raw-output '.by_node={"couchdb@{{groups.couchdb[0]}}":["00000000-7fffffff","80000000-ffffffff"], "couchdb@{{groups.couchdb[1]}}":["00000000-7fffffff","80000000-ffffffff"], "couchdb@{{groups.couchdb[2]}}":["00000000-7fffffff","80000000-ffffffff"]}'\
+    | /usr/bin/jq --raw-output '.by_range={"00000000-7fffffff":["couchdb@{{groups.couchdb[0]}}","couchdb@{{groups.couchdb[1]}}","couchdb@{{groups.couchdb[2]}}"],"80000000-ffffffff":["couchdb@{{groups.couchdb[0]}}","couchdb@{{groups.couchdb[1]}}","couchdb@{{groups.couchdb[2]}}"]}')
+done
+
+for i in "${!databases[@]}"
+do
+    curl -X PUT http://admin:password@127.0.0.1:5984/_node/_local/_dbs/${databases[$i]} -d  "${meta_data[$i]}"
+done
+
+
 curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "finish_cluster"}'
