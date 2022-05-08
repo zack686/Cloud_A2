@@ -26,11 +26,20 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 
+- name: Build an image
+  become: yes
+  community.docker.docker_image:
+    build:
+      path: "{{ harvester_dir }}/harvester"
+      dockerfile: Dockerfile
+    name: harvester
+    tag: v1
+    source: build
+
 - name: Run docker compose on noot node
   become: yes
   community.docker.docker_compose:
     project_src: "{{ harvester_dir }}"
-    build: yes
     state: present
     remove_orphans: yes
     recreate: always

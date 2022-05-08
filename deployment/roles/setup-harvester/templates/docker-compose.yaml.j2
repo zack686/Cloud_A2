@@ -2,7 +2,9 @@ version: '3.6'
 
 services:
   harvester:
-    build: ./harvester
+    image: harvester:v1
+    container_name: harvester{{IpAdd}}
+    restart: always
     environment:
       - COUCHDB_USERNAME={{database_user}}
       - COUCHDB_PASSWORD={{database_password}}
