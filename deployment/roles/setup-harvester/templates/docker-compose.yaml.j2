@@ -6,7 +6,8 @@ services:
     environment:
       - COUCHDB_USERNAME={{database_user}}
       - COUCHDB_PASSWORD={{database_password}}
-      - COUCHDB_NODE_IP=127.0.0.1
+      # Docker bridge IP - equivalent to localhost
+      - COUCHDB_NODE_IP=172.17.0.1
       - COUCHDB_DATABASE_NAME=twitter
       - TWITTER_API_KEY={{twtr_api_k}}
       - TWITTER_API_KEY_SECRET={{twtr_api_v}}

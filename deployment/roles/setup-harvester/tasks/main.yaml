@@ -30,6 +30,7 @@
   become: yes
   community.docker.docker_compose:
     project_src: "{{ harvester_dir }}"
+    build: yes
     state: present
     remove_orphans: yes
     recreate: always
