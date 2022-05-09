@@ -1,0 +1,17 @@
+#!/bin/bash
+
+curl -X PUT "http://admin:password@127.0.0.1:5984/aurin/school_completion" \
+    -H "Content-Type: application/json" \
+    -d @aurin/school_completion.json
+
+curl -X PUT "http://admin:password@127.0.0.1:5984/aurin/uni_proportion_suburb" \
+    -H "Content-Type: application/json" \
+    -d @aurin/uni_proportion_suburb.json
+
+curl -X PUT "http://admin:password@127.0.0.1:5984/aurin/vic_school_loc" \
+    -H "Content-Type: application/json" \
+    -d @aurin/vic_school_loc.json
+
+curl -X PUT "http://admin:password@127.0.0.1:5984/aurin/vic_states" \
+    -H "Content-Type: application/json" \
+    -d @aurin/vic_states.json
