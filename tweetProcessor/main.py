@@ -11,8 +11,7 @@ from src.tweetTagger import GeoBoundaries, process_tweet_range
 server = connect_to_couchdb_server(
     os.environ["COUCHDB_USERNAME"],
     os.environ["COUCHDB_PASSWORD"],
-    os.environ["COUCHDB_NODE_IP"],
-    "aurin",
+    os.environ["COUCHDB_NODE_IP"]
 )
 
 # Get the aurin suburb boundary data
