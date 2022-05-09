@@ -112,7 +112,8 @@ schools_stat = pd.DataFrame(schools_info)
 schools_stat.columns = ["x","y","postal","lga","sector","name"]
 schools_stat["postal"] = schools_stat["postal"].str.upper()
 
-rankings = pd.read_csv("school_rank_stats.csv")
+# Load school performance data
+rankings = pd.read_csv(path_to_work_dir+"school_rank_stats.csv")
 schools_stat = schools_stat.merge(rankings, on = "name", how = "outer")
 schools_stat["40_plus_top30"] = schools_stat["40_plus_top30"].fillna("no")
 schools_stat["Median VCE study score"] = schools_stat["Median VCE study score"].fillna(0)
@@ -160,7 +161,7 @@ scatter.update_layout(title_y=0.95, margin=dict(t=75, b=100, l=30, r=50))
 
 ###### Line Chart ######
 # Load suburb median house prices
-prices_suburb = pd.read_csv("median_house_price_suburb.csv")
+prices_suburb = pd.read_csv(path_to_work_dir+"median_house_price_suburb.csv")
 
 # Data wrangling
 for i in prices_suburb.columns[1:13]:
