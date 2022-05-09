@@ -42,9 +42,8 @@ def transform_extracted_tweets(tweet_list: List[dict]):
 
 
 def put_tweet(db: couchdb.Database, tweet: dict, allow_unidentified: bool=False) -> tuple:
-    """ Put one tweet in a couchdb database (paritioned depending on whether
-    the tweet is geo-enabled or not), doing nothing if there is already a
-    tweet in the database with the given id. In the case of a successful put,
+    """ Put one tweet in a couchdb database, doing nothing if there is already
+    a tweet in the database with the given id. In the case of a successful put,
     returns a tuple consisting of the document id and revision number. """
 
     set_tweet_id(tweet)
@@ -58,11 +57,10 @@ def put_tweet(db: couchdb.Database, tweet: dict, allow_unidentified: bool=False)
 
 
 def bulk_put_tweets(db: couchdb.Database, tweet_list: List[dict], allow_unidentified: bool=False) -> List[tuple]:
-    """ Put multiple tweets in a couchdb database, (paritioned depending on
-    whether they are geo-enabled or not), ignoring tweets with an id already
-    existing in the database. Returns a list of tuples consisting of the
-    document id and revision number of every tweet that was inserted into the
-    database. """
+    """ Put multiple tweets in a couchdb database, ignoring tweets with an id
+    already existing in the database. Returns a list of tuples consisting of
+    the document id and revision number of every tweet that was inserted into
+    the database. """
 
     for tweet in tweet_list:
         set_tweet_id(tweet)

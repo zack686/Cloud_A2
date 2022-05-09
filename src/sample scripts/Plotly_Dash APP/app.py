@@ -42,9 +42,9 @@ for tweet in db:
     count+=1
     if count == 5:
         break
-    if "coordinates" in db[tweet].keys():
-        loc = db[tweet]["coordinates"]["coordinates"]
-        location = Point(loc[0], loc[1])
+    if "geo" in db[tweet].keys():
+        loc = db[tweet]["geo"]["coordinates"]
+        location = Point(loc[1], loc[0])
     
         for suburb in suburb_polygons:
             if location.within(suburb_polygons[suburb]):

@@ -1,12 +1,11 @@
 import os
 
-from src.couchDB import connect_to_database_partition
+from src.couchDB import connect_to_database
 
-
-db = connect_to_database_partition(
+# Get the aurin suburb boundary data
+db = connect_to_database(
     os.environ["COUCHDB_USERNAME"],
     os.environ["COUCHDB_PASSWORD"],
     os.environ["COUCHDB_NODE_IP"],
-    "twitter",
-    "geo"
+    "aurin",
 )

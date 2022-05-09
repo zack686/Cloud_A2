@@ -1,0 +1,10 @@
+{
+    "_id": "_design/untagged_tweets",
+    "views": {
+        "untagged_geo_tweets": {
+            "map": "function (doc) {if (doc.coordinates && doc.id) {emit([doc.id], doc.id);}}",
+            "reduce": "function (keys, values, rereduce) {if (rereduce) {var res = [];for (var i = 0; i < values.length; i++){res = res.concat(values[i])}return res;} else {return values;}}"
+        }
+    },
+    "language": "javascript"
+}
