@@ -3,14 +3,13 @@ from typing import List
 import couchdb
 
 
-def connect_to_database(username: str, password: str, ip_address: str, dbname: str) -> couchdb.Database:
-    """ Returns a connection to a given couchdb database. """
+def connect_to_couchdb_server(username: str, password: str, ip_address: str) -> couchdb.Server:
+    """ Returns a connection to a given couchdb server. """
 
-    server = couchdb.Server(f"http://{username}:{password}@{ip_address}:5984/")
-    return server[dbname]
+    return couchdb.Server(f"http://{username}:{password}@{ip_address}:5984/")
 
 
-def get_tweets_in_range(db: couchdb.Database, start: int, end: int, prefix="geo") -> couchdb.client.ViewResults:
+def get_tweets_in_range(db: couchdb.Database, start: str, end: str, prefix="geo") -> couchdb.client.ViewResults:
     """ Returns the documents within a database within a specified id range. A
     default partition key of `geo` is used, but other parition keyscan be
     provided. """
