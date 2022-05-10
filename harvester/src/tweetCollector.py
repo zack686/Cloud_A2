@@ -1,4 +1,5 @@
 import json
+from typing import List
 
 import couchdb
 import tweepy
@@ -17,12 +18,13 @@ def connect_to_twitter(consumer_key: str, consumer_secret: str, access_token: st
     return api
 
 
-def collect_streamed_tweets_melbourne(db: couchdb.Database, consumer_key: str,
-    consumer_secret: str, access_token: str, access_token_secret: str):
+def collect_streamed_tweets(server: couchdb.Server, consumer_key: str,
+    consumer_secret: str, access_token: str, access_token_secret: str,
+    bounding_box: List[float]):
     """ Connect to the twitter streaming API, and collect tweets found within a
-    bounding box representing the majority of Greater Melbourne, written in
-    English, into the given couchDB database. Additionally, load the 100 most
-    recent tweets from each user with a tweet collected by the streamer. """
+    bounding box, written in English, into the twitter database of the given
+    couchDB server. Additionally, load the 100 most recent tweets from each
+    user with a tweet collected by the streamer. """
 
     class CustomListener(tweepy.Stream):
         def __init__(self, consumer_key, consumer_secret, access_token, access_token_secret):
@@ -43,7 +45,7 @@ def collect_streamed_tweets_melbourne(db: couchdb.Database, consumer_key: str,
         def on_data(self, data):
             # Load the current tweet and insert into the database
             tweet = json.loads(data)
-            put_tweet(db, tweet)
+            put_tweet(server, tweet)
 
             # Load the user's tweet history as well
             tweet_history = self.search_api.user_timeline(
@@ -53,7 +55,7 @@ def collect_streamed_tweets_melbourne(db: couchdb.Database, consumer_key: str,
                 tweet_mode="extended"
             )
             tweet_history = [tweet._json for tweet in tweet_history]
-            bulk_put_tweets(db, tweet_history)
+            bulk_put_tweets(server, tweet_history)
 
             return True  # Resume harvesting
 
@@ -64,4 +66,4 @@ def collect_streamed_tweets_melbourne(db: couchdb.Database, consumer_key: str,
                 return True  # Stop execution
 
     stream = CustomListener(consumer_key, consumer_secret, access_token, access_token_secret)
-    stream.filter(locations=[143.967590, -38.354580, 146.004181, -37.434522], languages=["en"])
+    stream.filter(locations=bounding_box, languages=["en"])

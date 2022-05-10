@@ -5,7 +5,7 @@ import flair
 from shapely import geometry
 from shapely.geometry  import Point
 
-from .couchDB import get_tweets_in_range, bulk_put_tweets
+from .couchDB import bulk_put_tweets
 
 
 class GeoBoundaries:
@@ -118,27 +118,3 @@ def tag_tweet(tweet: dict, area_boundaries: GeoBoundaries, classifier: flair.mod
     tagged_tweet["sentiment_strength"] = sentiment_strength
 
     return tagged_tweet
-
-
-def process_tweet_range(extract_db: couchdb.Database, insert_db: couchdb.Database,
-    area_boundaries: GeoBoundaries, classifier: flair.models.TextClassifier,
-    start_end_range: Tuple[str, str]) -> int:
-    """ Given an id range of tweets to be extracted from couchDB, process the
-    tweets into the given database, tagging them with the area they were made
-    from and their sentiment. """
-
-    start_range = start_end_range[0]
-    end_range = start_end_range[1]
-
-    # Download and tag geo-located tweets in the specified id range
-    tagged_tweets = []
-
-    tweets = get_tweets_in_range(extract_db, start_range, end_range)
-    for tweet in tweets:
-        tagged_tweet = tag_tweet(tweet, area_boundaries, classifier)
-        if tagged_tweet is not None:
-            tagged_tweets.append(tagged_tweet)
-
-    # Load the tagged tweets into couchDB
-    output = bulk_put_tweets(insert_db, tagged_tweets)
-    return len(output)

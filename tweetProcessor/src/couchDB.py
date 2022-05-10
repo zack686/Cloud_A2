@@ -1,4 +1,4 @@
-from typing import List
+from typing import Generator, List
 
 import couchdb
 
@@ -9,14 +9,14 @@ def connect_to_couchdb_server(username: str, password: str, ip_address: str) -> 
     return couchdb.Server(f"http://{username}:{password}@{ip_address}:5984/")
 
 
-def get_tweets_in_range(db: couchdb.Database, start: str, end: str, prefix="geo") -> couchdb.client.ViewResults:
+def batch_get_tweets_with_prefix(db: couchdb.Database, batch: int, prefix="geo") -> Generator:
     """ Returns the documents within a database within a specified id range. A
     default partition key of `geo` is used, but other parition keyscan be
     provided. """
 
-    startkey = f"{prefix}:{start}"
-    endkey = f"{prefix}:{end}"
-    return db.view("_all_docs", include_docs=True, startkey=startkey, endkey=endkey)
+    startkey = f"{prefix}:"
+    endkey = f"{prefix}:A"
+    return db.iterview("_all_docs", batch=batch, include_docs=True, startkey=startkey, endkey=endkey)
 
 
 def bulk_put_tweets(db: couchdb.Database, tweet_list: List[dict]) -> List[tuple]:

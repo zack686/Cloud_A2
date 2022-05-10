@@ -4,11 +4,10 @@ import uuid
 import couchdb
 
 
-def connect_to_database(username: str, password: str, ip_address: str, dbname: str) -> couchdb.Database:
-    """ Returns a connection to a given couchdb database. """
+def connect_to_couchdb_server(username: str, password: str, ip_address: str) -> couchdb.Server:
+    """ Returns a connection to a given couchdb server. """
 
-    server = couchdb.Server(f"http://{username}:{password}@{ip_address}:5984/")
-    return server[dbname]
+    return couchdb.Server(f"http://{username}:{password}@{ip_address}:5984/")
 
 
 def set_tweet_id(tweet: dict):
@@ -41,26 +40,46 @@ def transform_extracted_tweets(tweet_list: List[dict]):
         tweet_list[i] = tweet
 
 
-def put_tweet(db: couchdb.Database, tweet: dict, allow_unidentified: bool=False) -> tuple:
-    """ Put one tweet in a couchdb database, doing nothing if there is already
-    a tweet in the database with the given id. In the case of a successful put,
-    returns a tuple consisting of the document id and revision number. """
+def put_tweet(server: couchdb.Server, tweet: dict, allow_unidentified: bool=False,
+    set_unprocessed: bool=True) -> tuple:
+    """ Put one tweet in the 'twitter' database of a given couchdb server,
+    doing nothing if there is already a tweet in the database with the given
+    id. In the case of a successful put, returns a tuple consisting of the
+    document id and revision number.
+    
+    Tweets with no 'id' or 'id_str' key are assigned a random UUID if
+    `allow_unidentified` is set to true and rejected otherwise, while ids are
+    additionally saved to an 'unprocessed' database if the `set_unprocessed`
+    key is set to true. """
 
     set_tweet_id(tweet)
     if "unidentified" in tweet and not allow_unidentified:
         return
 
     try:
-        return db.save(tweet)
+        result = server["twitter"].save(tweet)
     except couchdb.http.ResourceConflict:
         return
 
+    if set_unprocessed:
+        try:
+            server["unprocessed"].save({"_id": result[0]})
+        except couchdb.http.ResourceConflict:
+            pass
 
-def bulk_put_tweets(db: couchdb.Database, tweet_list: List[dict], allow_unidentified: bool=False) -> List[tuple]:
-    """ Put multiple tweets in a couchdb database, ignoring tweets with an id
-    already existing in the database. Returns a list of tuples consisting of
-    the document id and revision number of every tweet that was inserted into
-    the database. """
+    return result
+
+
+def bulk_put_tweets(server: couchdb.Server, tweet_list: List[dict], allow_unidentified: bool=False,
+    set_unprocessed: bool=True) -> List[tuple]:
+    """ Put multiple tweets in the 'twitter' database of a given couchdb
+    server, ignoring tweets with an id already existing in the database.
+    Returns a list of tuples consisting of the document id and revision number
+    of every tweet that was inserted into the database.
+    
+    Tweets with no 'id' or 'id_str' key are silently rejected if
+    `allow_unidentified` is set to false, while ids are additionally saved to
+    an 'unprocessed' database if the `set_unprocessed` key is set to true. """
 
     for tweet in tweet_list:
         set_tweet_id(tweet)
@@ -68,5 +87,12 @@ def bulk_put_tweets(db: couchdb.Database, tweet_list: List[dict], allow_unidenti
     if not allow_unidentified:
         tweet_list = [tweet for tweet in tweet_list if "unidentified" not in tweet]
 
-    output = db.update(tweet_list)
-    return [(doc_id, doc_rev) for (success, doc_id, doc_rev) in output if success]
+    results = server["twitter"].update(tweet_list)
+    results = [(doc_id, doc_rev) for (success, doc_id, doc_rev) in results if success]
+
+    if set_unprocessed:
+        server["unprocessed"].update(
+            [{"_id": result[0]} for result in results]
+        )
+
+    return results
