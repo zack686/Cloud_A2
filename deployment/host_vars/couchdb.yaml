@@ -6,6 +6,7 @@ volumes:
 
 couchdb_dir: /data
 harvester_dir: /harvester
+tweet_processor_dir: /tweet_processor
 docker_dir: /var/lib/config
 
 # Couchdb parameters

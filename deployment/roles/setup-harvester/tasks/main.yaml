@@ -38,19 +38,26 @@
     src: "{{ playbook_dir }}/../harvester"
     dest: "{{ harvester_dir }}"
 
+- name: Create tweet_processor directory
+  become: yes
+  ansible.builtin.file:
+    path: "{{ tweet_processor_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: yes
+    state: directory
+
+- name: Copy tweet_processor files
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/../tweet_processor"
+    dest: "{{ tweet_processor_dir }}"
+
 - name: IP Address
   set_fact:
     IpAdd: "{{ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0])}}"
 
-- name: Configure compose
-  become: yes
-  ansible.builtin.template:
-    src: docker-compose.yaml.j2
-    dest: "{{ harvester_dir }}/docker-compose.yaml"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-
-- name: Build an image
+- name: Build an image for the harvester
   become: yes
   community.docker.docker_image:
     build:
@@ -60,7 +67,25 @@
     tag: v1
     source: build
 
-- name: Run docker compose on root node
+- name: Build an image for the tweet processor
+  become: yes
+  community.docker.docker_image:
+    build:
+      path: "{{ tweet_processor_dir }}/tweet_processor"
+      dockerfile: Dockerfile
+    name: tweet_processor
+    tag: v1
+    source: build
+
+- name: Configure compose
+  become: yes
+  ansible.builtin.template:
+    src: docker-compose.yaml.j2
+    dest: "{{ harvester_dir }}/docker-compose.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Run docker compose on root node to load the harvester
   become: yes
   community.docker.docker_compose:
     project_src: "{{ harvester_dir }}"
