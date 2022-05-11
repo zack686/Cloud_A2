@@ -38,8 +38,7 @@ def collect_streamed_tweets(server: couchdb.Server, consumer_key: str,
                 consumer_key,
                 consumer_secret,
                 access_token,
-                access_token_secret,
-                max_retries=7
+                access_token_secret
             )
 
         def on_data(self, data):
