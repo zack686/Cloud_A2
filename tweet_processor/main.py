@@ -2,9 +2,8 @@ import os
 
 import flair
 
-from tweet_processor.src.couchDB import *
-from tweet_processor.src.tweetTagger import *
-
+from src.couchDB import *
+from src.tweetTagger import *
 
 # Connect to the couchdb server
 server = connect_to_couchdb_server(
