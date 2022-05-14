@@ -26,10 +26,12 @@ agg_data = db["30489b99c43974fea8aea44f9b0149e4"]
 
 final_stats = []
 for id in agg_data:
-    sub_info = []
-    sub_info.append(agg_data[id]["name"])
-    sub_info.append(agg_data[id]["sentiment"])
-    sub_info.append(id)
+    if id != "_id" and id != "_rev":
+        sub_info = []
+        sub_info.append(agg_data[id]["name"])
+        sub_info.append(agg_data[id]["sentiment"])
+        sub_info.append(id)
+        final_stats.append(sub_info)
 
 final = pd.DataFrame(final_stats)
 final.columns = ["suburb","sentiment ratio","ids"]
