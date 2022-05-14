@@ -65,4 +65,4 @@ def collect_streamed_tweets(server: couchdb.Server, consumer_key: str,
                 return True  # Stop execution
 
     stream = CustomListener(consumer_key, consumer_secret, access_token, access_token_secret)
-    stream.filter(locations=bounding_box, languages=["en"])
+    stream.filter(track=[ "vce", "vcaa", "year11" "year12", "school", "atar", "units 3/4"], locations=bounding_box, languages=["en"])
