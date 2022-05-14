@@ -14,51 +14,23 @@ path_to_work_dir = os.environ["WORK_DIR"]
 with open(path_to_work_dir+"vic_states.json") as states:
         map_states = json.load(states)
 
-# Data storage
-suburb_polygons = {}
-stats_pos = {}
-stats_neg = {}
-state_shapes = map_states["features"]
-ids = {}
-
-# Save suburb polygons
-for suburb in state_shapes:
-    temp_poly = geometry.Polygon(suburb["geometry"]["coordinates"][0])
-    suburb_polygons[suburb["properties"]["vic_loca_2"]] = temp_poly
-    ids[suburb["properties"]["vic_loca_2"]] = suburb["id"]
-    stats_pos[suburb["properties"]["vic_loca_2"]] = 1
-    stats_neg[suburb["properties"]["vic_loca_2"]] = 1
-
 # Couchdb connector
 couchdb_username = os.environ["COUCHDB_USERNAME"]
 couchdb_password = os.environ["COUCHDB_PASSWORD"]
 couchdb_ip = os.environ["COUCHDB_IP"]
 couch = couchdb.Server('http://{}:{}@{}:5984'.format(couchdb_username, couchdb_password, couchdb_ip))
-db = couch['tagged']
-
-# Calculating sentiment ratios
-count = 0
-for tweet in db:
-    count+=1
-    if count == 5:
-        break
-    if "geo" in db[tweet].keys():
-        loc = db[tweet]["geo"]["coordinates"]
-        location = Point(loc[1], loc[0])
-    
-        for suburb in suburb_polygons:
-            if location.within(suburb_polygons[suburb]):
-                if db[tweet]["sentiment"] == "POSITIVE":
-                    stats_pos[suburb] += 1
-                else:
-                    stats_neg[suburb] += 1
-                
+db = couch['aggregation']
 
 # Creating final statistics dataframe
+agg_data = db["30489b99c43974fea8aea44f9b0149e4"]       
+
 final_stats = []
-for suburb in stats_pos:
-    ratio = stats_pos[suburb]/stats_neg[suburb]
-    final_stats.append([suburb,ratio,ids[suburb]])
+for id in agg_data:
+    sub_info = []
+    sub_info.append(agg_data[id]["name"])
+    sub_info.append(agg_data[id]["sentiment"])
+    sub_info.append(id)
+
 final = pd.DataFrame(final_stats)
 final.columns = ["suburb","sentiment ratio","ids"]
 
@@ -73,8 +45,8 @@ choropleth = px.choropleth_mapbox(final, geojson=map_states, locations=final.ids
                            zoom=9,height=600,
                            center = dict(lat= -37.8136 , lon=144.9631),  
                            opacity=0.8,  
-                           title = f"<b>Percentage of Positive Tweets related to Education</b>",
-                           labels={"sentiment ratio": "% of Positive Tweets"})
+                           title = f"<b>General Tweet Sentiment Regarding Education</b>",
+                           labels={"sentiment ratio": "General Sentiment"})
 
 choropleth.update_traces(
     hovertemplate="<br>".join([
