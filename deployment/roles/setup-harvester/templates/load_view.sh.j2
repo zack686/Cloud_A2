@@ -1,0 +1,6 @@
+#!/bin/bash
+
+curl -X PUT "http://admin:password@127.0.0.1:5984/tagged/_design/summary" -d @design_docs.json
+
+# To call the view, run:
+# http://admin:password@127.0.0.1:5984/tagged/_design/summary/_view/sentiment-by-suburb?group=true
