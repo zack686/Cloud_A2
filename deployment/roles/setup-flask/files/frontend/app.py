@@ -35,7 +35,14 @@ for suburb in agg_data["rows"]:
     sub_info.append(sub_id_name[suburb["key"]])
     sub_info.append(suburb["value"])
     sub_info.append(suburb["key"])
+    del sub_id_name[suburb["key"]]
     final_stats.append(sub_info)
+
+for id in sub_id_name:
+    sub_info = []
+    sub_info.append(sub_id_name[id])
+    sub_info.append(0.5)
+    sub_info.append(id)
 
 final = pd.DataFrame(final_stats)
 final.columns = ["suburb", "sentiment ratio", "ids"]
