@@ -53,6 +53,23 @@
     src: "{{ playbook_dir }}/../tweet_processor"
     dest: "{{ tweet_processor_dir }}"
 
+- name: Copy shell file to create view over processed data
+  become: yes
+  ansible.builtin.template:
+    src: load_view.sh.j2
+    dest: "{{ tweet_processor_dir }}/design_docs/load_aurin_data.sh"
+    mode: a+x
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  when: IpAdd == groups.couchdb[0]
+
+- name: Create the view to summarise processed data
+  become: yes
+  command: ./load_aurin_data.sh
+  args:
+    chdir: "{{ tweet_processor_dir }}/design_docs"
+  when: IpAdd == groups.couchdb[0]
+
 - name: IP Address
   set_fact:
     IpAdd: "{{ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0])}}"
