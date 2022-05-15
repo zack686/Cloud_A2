@@ -1,5 +1,6 @@
 from asyncore import file_dispatcher
 import json
+from operator import sub
 import couchdb
 import plotly_express as px
 from shapely import geometry
@@ -43,6 +44,7 @@ for id in sub_id_name:
     sub_info.append(sub_id_name[id])
     sub_info.append(0.5)
     sub_info.append(id)
+    final_stats.append(sub_info)
 
 final = pd.DataFrame(final_stats)
 final.columns = ["suburb", "sentiment ratio", "ids"]
