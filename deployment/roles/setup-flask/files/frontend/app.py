@@ -21,20 +21,24 @@ couchdb_ip = os.environ["COUCHDB_IP"]
 couch = couchdb.Server('http://{}:{}@{}:5984'.format(couchdb_username, couchdb_password, couchdb_ip))
 db = couch['aggregation']
 
+# Suburb ID - Name dict
+sub_id_name = {}
+for suburb in map_states["features"]:
+    sub_id_name[suburb["id"]] = suburb["properties"]["vic_loca_2"]
+
 # Creating final statistics dataframe
-agg_data = db["30489b99c43974fea8aea44f9b0149e4"]       
+agg_data = db["average-sentiment"]       
 
 final_stats = []
-for id in agg_data:
-    if id != "_id" and id != "_rev":
-        sub_info = []
-        sub_info.append(agg_data[id]["name"])
-        sub_info.append(agg_data[id]["sentiment"])
-        sub_info.append(id)
-        final_stats.append(sub_info)
+for suburb in agg_data["rows"]:
+    sub_info = []
+    sub_info.append(sub_id_name[suburb["key"]])
+    sub_info.append(suburb["value"])
+    sub_info.append(suburb["key"])
+    final_stats.append(sub_info)
 
 final = pd.DataFrame(final_stats)
-final.columns = ["suburb","sentiment ratio","ids"]
+final.columns = ["suburb", "sentiment ratio", "ids"]
 
 # Mapping
 choropleth = px.choropleth_mapbox(final, geojson=map_states, locations=final.ids,
@@ -47,8 +51,8 @@ choropleth = px.choropleth_mapbox(final, geojson=map_states, locations=final.ids
                            zoom=9,height=600,
                            center = dict(lat= -37.8136 , lon=144.9631),  
                            opacity=0.8,  
-                           title = f"<b>General Tweet Sentiment Regarding Education</b>",
-                           labels={"sentiment ratio": "General Sentiment"})
+                           title = f"<b>Positive Tweet Sentiment Regarding Education</b>",
+                           labels={"sentiment ratio": "Positive Tweet Rate"})
 
 choropleth.update_traces(
     hovertemplate="<br>".join([
