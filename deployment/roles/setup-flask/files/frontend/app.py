@@ -265,7 +265,6 @@ heat_data = pd.DataFrame(heat_data)
 heat_data.columns = ["suburb", "sentiment ratio", "ids","median income", "tafe %", "no post school %", "university %"]
 med_score_top = pd.DataFrame(schools_stat.loc[schools_stat["Median VCE study score"]].groupby(["Locality"]).mean()).reset_index()
 heat_data = heat_data.merge(med_score_top, how='inner', left_on="suburb", right_on="Locality")
-print(heat_data.head(5))
 corr_data = heat_data[["sentiment ratio", "median income", "tafe %", "no post school %", "university %","Median VCE study score"]].corr()
 
 # Mapping
