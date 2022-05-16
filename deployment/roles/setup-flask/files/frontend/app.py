@@ -86,11 +86,11 @@ aurin = couch['aurin']
 suburb_stats = aurin["uni_proportion_suburb"]["features"]
 for row in range(len(heat_data)):
     for suburb2 in suburb_stats:
-        if suburb_stats["properties"]["ssc_name"].upper() == heat_data[row][0]:
-            heat_data[row].append(suburb_stats["properties"]["median11"])
-            heat_data[row].append(suburb_stats["properties"]["cert"])
-            heat_data[row].append(suburb_stats["properties"]["y12"])
-            heat_data[row].append(suburb_stats["properties"]["uni"])
+        if suburb2["properties"]["ssc_name"].upper() == heat_data[row][0]:
+            heat_data[row].append(suburb2["properties"]["median11"])
+            heat_data[row].append(suburb2["properties"]["cert"])
+            heat_data[row].append(suburb2["properties"]["y12"])
+            heat_data[row].append(suburb2["properties"]["uni"])
 heat_data = pd.DataFrame(heat_data)
 heat_data.columns = ["suburb", "sentiment ratio", "ids","median income", "tafe %", "no post school %", "university %"]
 corr_data = heat_data["sentiment ratio", "median income", "tafe %", "no post school %", "university %"].corr()
