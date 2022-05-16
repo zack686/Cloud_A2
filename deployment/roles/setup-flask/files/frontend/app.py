@@ -262,22 +262,19 @@ for row in range(len(heat_data)):
             heat_data[row].append(suburb2["properties"]["y12"])
             heat_data[row].append(suburb2["properties"]["uni"])
 heat_data = pd.DataFrame(heat_data)
-heat_data.columns = ["suburb", "sentiment ratio", "ids","median income", "tafe %", "no post school %", "university %"]
-med_score_top = pd.DataFrame(schools_stat.loc[schools_stat["Median VCE study score"]].groupby(["Locality"]).mean()).reset_index()
-heat_data = heat_data.merge(med_score_top, how='inner', left_on="suburb", right_on="Locality")
-corr_data = heat_data[["sentiment ratio", "median income", "tafe %", "no post school %", "university %","Median VCE study score"]].corr()
+heat_data.columns = ["suburb", "Positive Tweet%", "ids","Median Income", "Tafe%", "No Post School%", "University%"]
+schools_stat["Locality"] = schools_stat["Locality"].fillna(schools_stat["postal"])
+med_score_top = pd.DataFrame(schools_stat.groupby(["Locality"])["Median VCE study score"].mean()).reset_index()
+heat_data = heat_data.merge(med_score_top, how='left', left_on="suburb", right_on="Locality")
+corr_data = heat_data[["Positive Tweet%", "Median Income", "Tafe%", "No Post School%", "University%","Median VCE study score"]].corr()
 
 # Mapping
-heat = px.imshow(corr_data, title = f"<b>Correlation Heatmap (Suburb Statistics)</b>", text_auto=True, color_continuous_scale='RdBu_r'
-                ,labels={"sentiment ratio": "positive tweet %",
-                "name":"# of Top Schools"})
+heat = px.imshow(corr_data, title = f"<b>Correlation Heatmap (Suburb Statistics)</b>", text_auto=True, color_continuous_scale='RdBu_r')
                 
 heat.update_layout({
 'plot_bgcolor': 'rgba(0, 0, 0, 0)',
 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
 })
-
-heat.update_layout(title_x=0.01)
 
 ###### Dashboard App ###### 
 app = Dash(__name__)
@@ -293,11 +290,13 @@ app.layout = html.Div(style={'background-color':'powderblue',"border":"5px", "bo
     html.Div(style={"border-top":"5px solid #80002a"}, children=[
     dcc.Graph(
         id='choropleth',
+        style={'display': 'inline-block'},
         figure=choropleth
     ),
     dcc.Graph(
         id='heat',
         figure=heat,
+        style={'display': 'inline-block'},
         config= dict(displayModeBar = False)
     )
     ])
