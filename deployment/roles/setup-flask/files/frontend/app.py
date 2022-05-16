@@ -68,7 +68,7 @@ choropleth = px.choropleth_mapbox(final, geojson=map_states, locations=final.ids
 choropleth.update_traces(
     hovertemplate="<br>".join([
         "Suburb: %{customdata[1]}",
-        "Sentiment Ratio: %{customdata[0]}",
+        "Positive Tweet Rate: %{customdata[0]}",
     ])
 )
 choropleth.update_layout(margin=dict(l=30, r=30, t=60, b=30))
@@ -79,24 +79,6 @@ choropleth.update_layout({
 })
 
 choropleth.update_layout(title_x=0.01)
-
-###### Heat MAP ###### 
-# Joining suburbs tweet aggregations and suburb data 
-aurin = couch['aurin']
-suburb_stats = aurin["uni_proportion_suburb"]["features"]
-for row in range(len(heat_data)):
-    for suburb2 in suburb_stats:
-        if suburb2["properties"]["ssc_name"].upper() == heat_data[row][0]:
-            heat_data[row].append(suburb2["properties"]["median11"])
-            heat_data[row].append(suburb2["properties"]["cert"])
-            heat_data[row].append(suburb2["properties"]["y12"])
-            heat_data[row].append(suburb2["properties"]["uni"])
-heat_data = pd.DataFrame(heat_data)
-heat_data.columns = ["suburb", "sentiment ratio", "ids","median income", "tafe %", "no post school %", "university %"]
-corr_data = heat_data[["sentiment ratio", "median income", "tafe %", "no post school %", "university %"]].corr()
-
-# Mapping
-heat = px.imshow(corr_data, title = f"<b>Correlation Heatmap (Suburb Statistics)</b>", text_auto=True, color_continuous_scale='RdBu_r')
 
 ###### Scatter Plot ###### 
 # Couchdb connector
@@ -268,6 +250,36 @@ completion_bar.update_layout({
 completion_bar.update_layout(xaxis=dict(rangeslider=dict(visible=True), type = 'category'))
 completion_bar.update_yaxes(range=[60,100])
 
+###### Heat MAP ###### 
+# Joining suburbs tweet aggregations and suburb data 
+aurin = couch['aurin']
+suburb_stats = aurin["uni_proportion_suburb"]["features"]
+for row in range(len(heat_data)):
+    for suburb2 in suburb_stats:
+        if suburb2["properties"]["ssc_name"].upper() == heat_data[row][0]:
+            heat_data[row].append(suburb2["properties"]["median11"])
+            heat_data[row].append(suburb2["properties"]["cert"])
+            heat_data[row].append(suburb2["properties"]["y12"])
+            heat_data[row].append(suburb2["properties"]["uni"])
+heat_data = pd.DataFrame(heat_data)
+heat_data.columns = ["suburb", "sentiment ratio", "ids","median income", "tafe %", "no post school %", "university %"]
+med_score_top = pd.DataFrame(schools_stat.loc[schools_stat["Median VCE study score"]].groupby(["Locality"]).mean()).reset_index()
+heat_data = heat_data.merge(med_score_top, how='inner', left_on="suburb", right_on="Locality")
+print(heat_data.head(5))
+corr_data = heat_data[["sentiment ratio", "median income", "tafe %", "no post school %", "university %","Median VCE study score"]].corr()
+
+# Mapping
+heat = px.imshow(corr_data, title = f"<b>Correlation Heatmap (Suburb Statistics)</b>", text_auto=True, color_continuous_scale='RdBu_r'
+                ,labels={"sentiment ratio": "positive tweet %",
+                "name":"# of Top Schools"})
+                
+heat.update_layout({
+'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+})
+
+heat.update_layout(title_x=0.01)
+
 ###### Dashboard App ###### 
 app = Dash(__name__)
 
@@ -286,7 +298,8 @@ app.layout = html.Div(style={'background-color':'powderblue',"border":"5px", "bo
     ),
     dcc.Graph(
         id='heat',
-        figure=heat
+        figure=heat,
+        config= dict(displayModeBar = False)
     )
     ])
     ,
