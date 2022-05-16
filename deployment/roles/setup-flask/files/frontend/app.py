@@ -263,11 +263,11 @@ for row in range(len(heat_data)):
             heat_data[row].append(suburb2["properties"]["y12"])
             heat_data[row].append(suburb2["properties"]["uni"])
 heat_data = pd.DataFrame(heat_data)
-heat_data.columns = ["suburb", "Positive Tweet%", "ids","Median Income", "Tafe%", "No Post School%", "University%"]
+heat_data.columns = ["suburb", "Positive Tweet%", "ids","Median Income", "Tafe Degree%", "No Post School Qualifications%", "University Degree%"]
 schools_stat["Locality"] = schools_stat["Locality"].fillna(schools_stat["postal"])
 med_score_top = pd.DataFrame(schools_stat.groupby(["Locality"])["Median VCE study score"].mean()).reset_index()
 heat_data = heat_data.merge(med_score_top, how='left', left_on="suburb", right_on="Locality")
-corr_data = heat_data[["Positive Tweet%", "Median Income", "Tafe%", "No Post School%", "University%","Median VCE study score"]].corr()
+corr_data = heat_data[["Positive Tweet%", "Median Income", "Tafe Degree%", "No Post School Qualifications%", "University Degree%","Median VCE study score"]].corr()
 
 # Mapping
 heat = px.imshow(corr_data, title = f"<b>Correlation Heatmap (Suburb Statistics)</b>", text_auto=True, color_continuous_scale='RdBu_r')
