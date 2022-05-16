@@ -276,6 +276,9 @@ heat.update_layout({
 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
 })
 
+heat.update_layout(title_y=0.93, title_x=0.03, margin=dict(t=100, b=0, l=0, r=0),
+                    legend=dict(yanchor="top",y=1,xanchor="right",x=1.1))
+
 ###### Dashboard App ###### 
 app = Dash(__name__)
 
