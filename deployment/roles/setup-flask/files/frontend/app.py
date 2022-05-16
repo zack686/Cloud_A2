@@ -81,7 +81,7 @@ choropleth.update_layout({
 choropleth.update_layout(title_x=0.01)
 
 ###### Heat MAP ###### 
-# Joining suburbs tweet aggregations and suburb data
+# Joining suburbs tweet aggregations and suburb data 
 aurin = couch['aurin']
 suburb_stats = aurin["uni_proportion_suburb"]["features"]
 for row in range(len(heat_data)):
@@ -93,10 +93,10 @@ for row in range(len(heat_data)):
             heat_data[row].append(suburb2["properties"]["uni"])
 heat_data = pd.DataFrame(heat_data)
 heat_data.columns = ["suburb", "sentiment ratio", "ids","median income", "tafe %", "no post school %", "university %"]
-corr_data = heat_data["sentiment ratio", "median income", "tafe %", "no post school %", "university %"].corr()
+corr_data = heat_data[["sentiment ratio", "median income", "tafe %", "no post school %", "university %"]].corr()
 
 # Mapping
-heat = px.imshow(corr_data, title = f"<b>Correlation Heatmap (Suburb Statistics)</b>", text_auto=True)
+heat = px.imshow(corr_data, title = f"<b>Correlation Heatmap (Suburb Statistics)</b>", text_auto=True, color_continuous_scale='RdBu_r')
 
 ###### Scatter Plot ###### 
 # Couchdb connector
