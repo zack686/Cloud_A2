@@ -176,7 +176,8 @@ line = px.line(prices_time, x=prices_time.index, y=prices_time.columns[1:], titl
 line.update_layout({
 'plot_bgcolor': 'rgba(0, 0, 0, 0)',
 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
-'width': 800
+'width': 1250,
+'height': 500
 })
 line.update_layout(margin=dict(t=90, b=0, l=0, r=0))
 
@@ -274,10 +275,10 @@ heat = px.imshow(corr_data, title = f"<b>Correlation Heatmap (Suburb Statistics)
 heat.update_layout({
 'plot_bgcolor': 'rgba(0, 0, 0, 0)',
 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+'width': 550
 })
-
-heat.update_layout(title_y=0.93, title_x=0.03, margin=dict(t=100, b=0, l=0, r=0),
-                    legend=dict(yanchor="top",y=1,xanchor="right",x=1.1))
+heat.update_traces(showscale=False)
+heat.update_layout(title_y=0.92, title_x=0, margin=dict(t=0, b=0, l=0),coloraxis_showscale=False)
 
 ###### Dashboard App ###### 
 app = Dash(__name__)
@@ -293,14 +294,7 @@ app.layout = html.Div(style={'background-color':'powderblue',"border":"5px", "bo
     html.Div(style={"border-top":"5px solid #80002a"}, children=[
     dcc.Graph(
         id='choropleth',
-        style={'display': 'inline-block'},
         figure=choropleth
-    ),
-    dcc.Graph(
-        id='heat',
-        figure=heat,
-        style={'display': 'inline-block'},
-        config= dict(displayModeBar = False)
     )
     ])
     ,
@@ -346,6 +340,12 @@ app.layout = html.Div(style={'background-color':'powderblue',"border":"5px", "bo
     dcc.Graph(
         id='completion_bar',
         figure=completion_bar,
+        style={'display': 'inline-block'},
+        config= dict(displayModeBar = False)
+    ),
+    dcc.Graph(
+        id='heat',
+        figure=heat,
         style={'display': 'inline-block'},
         config= dict(displayModeBar = False)
     ),
