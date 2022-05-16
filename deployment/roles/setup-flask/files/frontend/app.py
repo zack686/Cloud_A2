@@ -31,12 +31,14 @@ for suburb in map_states["features"]:
 agg_data = db["average-sentiment"]       
 
 final_stats = []
+heat_data = [] # for heatmap
 for suburb in agg_data["rows"]:
     sub_info = []
     sub_info.append(sub_id_name[suburb["key"]])
     sub_info.append(suburb["value"])
     sub_info.append(suburb["key"])
     del sub_id_name[suburb["key"]]
+    heat_data.append(sub_info)
     final_stats.append(sub_info)
 
 for id in sub_id_name:
@@ -77,6 +79,24 @@ choropleth.update_layout({
 })
 
 choropleth.update_layout(title_x=0.01)
+
+###### Heat MAP ###### 
+# Joining suburbs tweet aggregations and suburb data
+aurin = couch['aurin']
+suburb_stats = aurin["uni_proportion_suburb"]["features"]
+for row in range(len(heat_data)):
+    for suburb2 in suburb_stats:
+        if suburb_stats["properties"]["ssc_name"].upper() == heat_data[row][0]:
+            heat_data[row].append(suburb_stats["properties"]["median11"])
+            heat_data[row].append(suburb_stats["properties"]["cert"])
+            heat_data[row].append(suburb_stats["properties"]["y12"])
+            heat_data[row].append(suburb_stats["properties"]["uni"])
+heat_data = pd.DataFrame(heat_data)
+heat_data.columns = ["suburb", "sentiment ratio", "ids","median income", "tafe %", "no post school %", "university %"]
+corr_data = heat_data["sentiment ratio", "median income", "tafe %", "no post school %", "university %"].corr()
+
+# Mapping
+heat = px.imshow(corr_data, title = f"<b>Correlation Heatmap (Suburb Statistics)</b>", text_auto=True)
 
 ###### Scatter Plot ###### 
 # Couchdb connector
@@ -263,6 +283,10 @@ app.layout = html.Div(style={'background-color':'powderblue',"border":"5px", "bo
     dcc.Graph(
         id='choropleth',
         figure=choropleth
+    ),
+    dcc.Graph(
+        id='heat',
+        figure=heat
     )
     ])
     ,
