@@ -1,5 +1,18 @@
 # Cloud_A2
 
+### Team Information
+
+Melbourne - 17th of May 2022
+
+Team 24
+
+Julius Kerstien 1016442
+Zack Chen-McCaig 1221476
+Tom Lin 1229008
+Harry Tran 1124415
+James Kerlidis 912988
+
+
 ### Python version
 python 3.8.9  
 
