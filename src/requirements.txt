@@ -1,6 +1,0 @@
-CouchDB==1.2
-Flask==2.0.3
-flask-restx==0.5.1
-gunicorn==20.1.0
-python-dotenv==0.20.0
-tweepy==4.8.0
